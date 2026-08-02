@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of /.well-known/ on Supermetrics hosts
+hosts:
+- host: https://api.supermetrics.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: supermetrics-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: supermetrics-oauth-authorization-server.json
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://supermetrics.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: supermetrics-security.txt
+  - path: /.well-known/openid-configuration
+    status: 404
+notes: >-
+  api.supermetrics.com publishes both OIDC discovery (RFC 8414 metadata) and an
+  oauth-authorization-server document advertising authorization_code + refresh_token
+  grants, PKCE (S256), Dynamic Client Registration, and 13 scopes. The marketing host
+  supermetrics.com serves the RFC 9116 security.txt.

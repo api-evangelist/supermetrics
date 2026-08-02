@@ -1,0 +1,55 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.supermetrics.com/apidocs
+docs: https://docs.supermetrics.com/apidocs/making-requests
+authentication:
+  style: bearer-api-key + oauth2
+  header: 'Authorization: Bearer <api key>'
+  ref: authentication/supermetrics-authentication.yml
+request:
+  base_url: https://api.supermetrics.com
+  primary_endpoint: /enterprise/v2/query/data/json
+  methods: [GET, POST]
+  get_encoding: >-
+    GET requests pass a single json parameter containing the JSON-encoded query
+    (URL-encoded per RFC 1738); add pretty=true for human-readable output.
+  post_encoding: [application/json, application/x-www-form-urlencoded]
+  cors: Cross-origin requests are not accepted by default for authenticated operations.
+pagination:
+  style: offset
+  notes: >-
+    Optional pagination for managing large result sets; max_rows caps server-side rows.
+    See docs/apidocs/pagination.
+  docs: https://docs.supermetrics.com/apidocs/pagination
+async:
+  supported: true
+  submit: {method: GET, path: /enterprise/v2/query/data/json, trigger: 'sync_timeout=0 returns 202 QUEUED with a schedule_id'}
+  poll: {method: GET, path: /enterprise/v2/query/status, key: schedule_id}
+  results: {method: GET, path: /enterprise/v2/query/results, key: schedule_id}
+  status_values: [QUEUED]
+  runtime_max: four hours
+  retention: status/results retrievable up to one hour after a query stops
+  docs: https://docs.supermetrics.com/apidocs/async-queries
+idempotency:
+  documented_key: false
+  implicit_dedup: >-
+    Identical queries submitted simultaneously are de-duplicated: only the first request
+    performs the query, up to 10 duplicate waiting requests wait for its result. This is
+    request coalescing, not a client-supplied idempotency key.
+request_tracing:
+  request_id: Every response carries meta.request_id; use --verbose in the CLI to surface it for support.
+versioning:
+  scheme: uri-path
+  current: v2
+  ref: lifecycle/supermetrics-lifecycle.yml
+output_formats:
+  values: [json, csv, parquet, html]
+  docs: https://docs.supermetrics.com/apidocs/output-formats
+error_envelope:
+  ref: errors/supermetrics-problem-types.yml
+  shape: '{meta:{request_id}, error:{code,message,description}, links:{docs,help}}'
+rate_limiting:
+  ref: null
+  guidance: Limit to 20 requests/second per license and IP; 429 Too Many Requests on breach.
+  concurrency: Queries run with limited concurrency per license tier; up to 10 duplicate requests queue.
+  docs: https://docs.supermetrics.com/apidocs/usage-limits

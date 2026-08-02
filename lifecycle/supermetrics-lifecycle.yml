@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.supermetrics.com/apidocs
+versioning:
+  scheme: uri-path
+  current: v2
+  path_prefix: /enterprise/v2/
+  docs: https://docs.supermetrics.com/apidocs/getting-started
+deprecation:
+  policy_url: https://docs.supermetrics.com/docs/system-updates.md
+  notes: >-
+    Data-source and field deprecations are announced with dated notices (Announcements /
+    "field changes" pages) ahead of the effective date, typically with replacement fields
+    and migration guidance. No RFC 8594 Sunset/Deprecation response headers are documented
+    on the API itself.
+  examples:
+  - Facebook Insights field changes - June 30, 2026
+  - Adobe Analytics 2.0 field changes - June 30, 2026
+  - Adobe Analytics v1.4 API retirement (migrate to v2.0)
+status_page: https://status.supermetrics.com
+sla:
+  fair_usage_policy: https://docs.supermetrics.com/docs/about-supermetrics-fair-usage-policy.md
+usage_limits:
+  requests_per_second: 20
+  query_runtime_max: four hours
+  docs: https://docs.supermetrics.com/apidocs/usage-limits

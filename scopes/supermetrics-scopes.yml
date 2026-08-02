@@ -1,0 +1,25 @@
+generated: '2026-07-21'
+method: searched
+source: https://api.supermetrics.com/.well-known/openid-configuration
+docs: https://supermetrics.com/docs/product-api-oauth/
+schemes:
+- name: OAuth2
+  source: well-known/supermetrics-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.supermetrics.com/oauth/authorize
+    tokenUrl: https://api.supermetrics.com/oauth/token
+scopes:
+- {scope: openid, description: OpenID Connect authentication (issue an ID token), flows: [authorizationCode]}
+- {scope: profile, description: Access to the user's basic profile claims (name, given_name, family_name), flows: [authorizationCode]}
+- {scope: email, description: Access to the user's email claim, flows: [authorizationCode]}
+- {scope: offline_access, description: Issue a refresh token for long-lived offline access, flows: [authorizationCode]}
+- {scope: team_read, description: Read team settings and membership, flows: [authorizationCode]}
+- {scope: user_read, description: Read the authenticated user, flows: [authorizationCode]}
+- {scope: ds_logins_read, description: Read data source logins (authentications), flows: [authorizationCode]}
+- {scope: ds_accounts_read, description: Read the accounts available under a data source, flows: [authorizationCode]}
+- {scope: ds_queries_run, description: Run data queries against connected data sources, flows: [authorizationCode]}
+- {scope: ds_platform_write, description: Write access to data source / platform configuration, flows: [authorizationCode]}
+- {scope: ds_login_links_read, description: Read single-use data source login links, flows: [authorizationCode]}
+- {scope: ds_login_links_write, description: Create single-use data source login links, flows: [authorizationCode]}
+- {scope: auth_create_account, description: Create a Supermetrics account during the auth flow, flows: [authorizationCode]}

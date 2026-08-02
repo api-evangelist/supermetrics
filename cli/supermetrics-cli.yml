@@ -1,0 +1,54 @@
+generated: '2026-07-21'
+method: searched
+source: https://github.com/supermetrics-public/supermetrics-cli
+name: supermetrics
+status: alpha
+language: go
+summary: >-
+  Command-line interface for the Supermetrics API. Query marketing data, manage OAuth
+  login links, schedule Data Warehouse backfills, and manage Connector Builder connectors
+  from a terminal or scripts.
+install:
+- method: homebrew
+  command: brew install supermetrics-public/tap/supermetrics
+- method: go
+  command: go install github.com/supermetrics-public/supermetrics-cli/cmd/supermetrics@latest
+- method: apt
+  command: sudo apt-get install supermetrics
+  repo: https://supermetrics-public.github.io/linux-packages/
+- method: yum
+  command: sudo yum install supermetrics
+- method: github-releases
+  url: https://github.com/supermetrics-public/supermetrics-cli/releases
+authentication:
+  methods: [oauth-login, api-key]
+  resolution_priority:
+  - --api-key flag
+  - SUPERMETRICS_API_KEY environment variable
+  - OAuth token from config (auto-refreshed)
+  - API key from config file
+top_level_commands:
+- {command: login, description: Log in via OAuth (Google/Microsoft)}
+- {command: logout, description: Revoke tokens and log out}
+- {command: configure, description: Set up API key and defaults}
+- {command: version, description: Show version, build date, and commit}
+- {command: completion, description: Generate shell completion scripts}
+- {command: profile, description: Manage named credential profiles}
+resource_commands:
+- {resource: login-links, subcommands: [create, get, list, close], description: Manage OAuth login links for data source authentication}
+- {resource: logins, subcommands: [get, list], description: View authenticated data source logins}
+- {resource: accounts, subcommands: [list], description: List available accounts for a data source}
+- {resource: queries, subcommands: [execute], description: Execute data queries against connected sources}
+- {resource: backfills, subcommands: [create, get, get-latest, list-incomplete, cancel], description: Manage Data Warehouse backfills}
+- {resource: datasource, subcommands: [get], description: View data source configuration details}
+- {resource: connector-builder, subcommands: [list, get, create, update, delete], description: Manage Connector Builder connectors}
+- {resource: connector-builder-secrets, subcommands: [list, create, update, delete], description: Manage secrets for a connector}
+- {resource: connector-builder-logs, subcommands: [list, get], description: View execution logs for a connector}
+- {resource: connector-builder-logo, subcommands: [get, upload], description: Manage the logo for a connector}
+output_formats: [json, table, csv]
+features:
+- named profiles (SUPERMETRICS_PROFILE)
+- dry-run (--dry-run) on login-links create, backfills create/cancel
+- confirmation prompts (-y/--yes) on destructive commands
+- backfills create --wait polls to completion
+- server-side and client-side field selection

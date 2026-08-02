@@ -1,0 +1,31 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://docs.supermetrics.com/docs/supermetrics-mcp-server.md
+server:
+  name: supermetrics
+  transport: http
+  url: https://mcp.supermetrics.com
+  datasources_catalog: https://mcp.supermetrics.com/datasources
+  auth:
+    type: oauth2
+    description: >-
+      OAuth2 authorization at api.supermetrics.com (authorization_code + PKCE,
+      Dynamic Client Registration, client_id metadata document supported) — the same
+      authorization server that fronts the Supermetrics API.
+    authorization_server: https://api.supermetrics.com/.well-known/oauth-authorization-server
+capabilities:
+  description: >-
+    Hosted, remote MCP server that connects AI assistants (Claude, ChatGPT, Gemini,
+    Microsoft Copilot, n8n) directly to all of a customer's Supermetrics data sources
+    through a single connection: query marketing data via natural language, run health
+    checks, pacing checks and performance alerts, and create or modify campaigns.
+  data_sources: >-
+    Google Ads, Facebook, TikTok, Google Analytics, LinkedIn Ads and 100+ more
+    (full list at https://mcp.supermetrics.com/datasources).
+clients:
+- {name: Supermetrics for Claude, docs: https://docs.supermetrics.com/docs/supermetrics-for-claude.md}
+- {name: Supermetrics for ChatGPT, docs: https://docs.supermetrics.com/docs/supermetrics-chatgpt-integration.md}
+- {name: Marketing Intelligence Agent for Gemini, docs: https://docs.supermetrics.com/docs/supermetrics-marketing-intelligence-agent-for-gemini.md}
+- {name: Marketing Analyst for Microsoft Copilot, docs: https://docs.supermetrics.com/docs/supermetrics-marketing-analyst-for-microsoft-copilot.md}
+- {name: Claude marketing plugin, repo: https://github.com/supermetrics-public/claude-marketing-plugin}

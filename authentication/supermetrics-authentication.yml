@@ -1,0 +1,50 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.supermetrics.com/apidocs/authentication.md
+docs: https://docs.supermetrics.com/apidocs/authentication
+oauth_docs: https://supermetrics.com/docs/product-api-oauth/
+discovery:
+  openid_configuration: https://api.supermetrics.com/.well-known/openid-configuration
+  oauth_authorization_server: https://api.supermetrics.com/.well-known/oauth-authorization-server
+summary:
+  types: [http, oauth2, openIdConnect]
+  api_key_in: [header, query]
+  oauth2_flows: [authorizationCode]
+schemes:
+- name: ApiKeyBearer
+  type: http
+  scheme: bearer
+  description: >-
+    Access to the Supermetrics API is through an API key plus a valid Supermetrics
+    API license. Preferred transport is the Authorization header
+    "Authorization: Bearer <api key>"; an api_key query/body parameter is also accepted.
+  sources: [docs/apidocs/authentication]
+- name: ApiKeyQuery
+  type: apiKey
+  in: query
+  parameter_name: api_key
+  description: API key passed as the api_key request parameter (header form preferred).
+  sources: [docs/apidocs/authentication]
+- name: OAuth2
+  type: oauth2
+  description: >-
+    Full OAuth2 / OIDC surface advertised at api.supermetrics.com. Supports
+    authorization_code and refresh_token grants, PKCE (S256), Dynamic Client
+    Registration (RFC 7591), and the client_id metadata document. Token endpoint auth
+    methods: client_secret_post, client_secret_basic, none.
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.supermetrics.com/oauth/authorize
+    tokenUrl: https://api.supermetrics.com/oauth/token
+    refreshUrl: https://api.supermetrics.com/oauth/token
+    registrationUrl: https://api.supermetrics.com/oauth/register
+    revocationUrl: https://api.supermetrics.com/oauth/revoke
+    scope_count: 13
+  sources: [well-known/supermetrics-openid-configuration.json]
+- name: OpenIDConnect
+  type: openIdConnect
+  openIdConnectUrl: https://api.supermetrics.com/.well-known/openid-configuration
+  id_token_signing_alg: [RS256]
+  userinfo_endpoint: https://api.supermetrics.com/oauth/userinfo
+  jwks_uri: https://api.supermetrics.com/oauth/certs
+  sources: [well-known/supermetrics-openid-configuration.json]

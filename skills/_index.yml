@@ -1,0 +1,15 @@
+generated: '2026-07-21'
+method: generated
+source: docs.supermetrics.com/apidocs + supermetrics-cli command surface
+note: >-
+  Supermetrics publishes no OpenAPI; skills are grounded in the documented REST
+  operations (docs/apidocs) and the first-party CLI resource commands, both real.
+skills:
+- file: supermetrics-query-marketing-data.md
+  name: Query marketing data (sync and async)
+  api: https://api.supermetrics.com/enterprise/v2
+  operations: [queries.execute, query.status, query.results]
+- file: supermetrics-onboard-data-source.md
+  name: Onboard an end user's data source with a login link
+  api: https://api.supermetrics.com/enterprise/v2
+  operations: [login-links.create, login-links.get, logins.list, accounts.list]

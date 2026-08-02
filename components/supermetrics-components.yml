@@ -1,0 +1,22 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.supermetrics.com/docs/about-build-on-supermetrics.md
+components:
+- family: connection
+  name: Branded connection flow
+  kind: hosted-embedded-flow
+  description: >-
+    White-labeled, customizable data-source connection / login screens that partners
+    embed so their end users authenticate data sources under the partner's brand.
+  docs: https://docs.supermetrics.com/docs/branded-connection-flow.md
+- family: connection
+  name: Data source login links
+  kind: hosted-link
+  description: >-
+    Single-use, server-created login links (Management API + CLI login-links) that hand
+    an end user a hosted data-source authentication screen.
+  docs: https://docs.supermetrics.com/apidocs/management-api
+notes: >-
+  These are hosted/embedded connection surfaces from the "Build on Supermetrics" program,
+  distinct from the server-side SDK/CLI in packages/. No standalone JS web-component /
+  element library is published.

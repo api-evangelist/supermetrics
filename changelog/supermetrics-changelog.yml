@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.supermetrics.com/docs/system-updates.md
+scheme: dated-announcements
+url: https://docs.supermetrics.com/docs/system-updates
+notes: >-
+  Supermetrics publishes an "Announcements" feed of dated notices, dominated by
+  data-source / connector field changes (deprecations, replacements, new limits) rather
+  than core API versioning. Recent window captured below.
+entries:
+- {date: '2026-06-30', title: Facebook Insights field changes, type: deprecation, area: Facebook Insights}
+- {date: '2026-06-30', title: Adobe Analytics 2.0 field changes, type: deprecation, area: Adobe Analytics 2.0}
+- {date: '2026-06-22', title: Facebook Ads field changes, type: change, area: Facebook Ads}
+- {date: '2026-04-30', title: The Trade Desk field changes, type: change, area: The Trade Desk}
+- {date: '2026-04-29', title: X Ads (Twitter) field changes, type: change, area: X Ads}
+- {date: '2026-04-28', title: 'Shopify: New historical limitations', type: change, area: Shopify}
+- {date: '2026-02-24', title: Google Campaign Manager 360 field changes, type: change, area: Google Campaign Manager 360}
+- {date: '2026-01-12', title: 'Facebook Ads: New historical limitations, attribution window and metric removals', type: deprecation, area: Facebook Ads}
+- {date: '2025-11-13', title: Facebook Insights field changes, type: deprecation, area: Facebook Insights}

@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.supermetrics.com/apidocs/errors.md
+format: custom-json
+envelope:
+  description: >-
+    Errors return a JSON body with a meta.request_id, an error object
+    (code, message, description), and links to docs/help. Not RFC 9457
+    application/problem+json; a Supermetrics-specific envelope.
+  shape:
+    meta: {request_id: string}
+    error: {code: string, message: string, description: string}
+    links: {docs: {href: string}, help: {href: string}}
+http_status:
+- {status: 400, meaning: Request validation errors}
+- {status: 401, meaning: Authentication failures}
+- {status: 403, meaning: Access / permission / licensing restrictions}
+- {status: 429, meaning: Rate limiting and quota exceeded}
+- {status: 500, meaning: Default for unspecified / internal errors}
+problems:
+- {code: ACCESS_TOKEN_INVALID, status: 401, category: authentication}
+- {code: API_KEY_INVALID, status: 401, category: authentication}
+- {code: API_KEY_REQUIRED, status: 401, category: authentication}
+- {code: ACCESS_DENIED_IP, status: 403, category: access, remediation: Allowlist the calling IP or request from an approved IP.}
+- {code: ACCESS_DENIED_PERMISSIONS, status: 403, category: access}
+- {code: API_KEY_DISABLED, status: 403, category: access}
+- {code: LICENSE_ACCESS_DATA_SOURCE, status: 403, category: licensing}
+- {code: LICENSE_ACCOUNT_LIMIT_EXCEEDED, status: 403, category: licensing}
+- {code: LICENSE_EXPIRED, status: 403, category: licensing}
+- {code: LICENSE_HISTORICAL_RANGE_EXCEEDED, status: 403, category: licensing}
+- {code: LICENSE_ROW_LIMIT_EXCEEDED, status: 403, category: licensing}
+- {code: LICENSE_QUERIES_SUSPENDED, status: 403, category: licensing}
+- {code: STATUS_NOT_FOUND, status: 400, category: queue, remediation: The async schedule_id was not found; status/results are retained up to one hour after a query stops.}
+notes: >-
+  The docs error reference also enumerates 30+ request-validation codes (accounts,
+  dates, fields, filters, segments, settings), data-source errors (accounts, auth,
+  rate-limit, segments), and conversion/queue/system errors. Captured here are the
+  authentication, access/licensing, and queue classes plus the HTTP status map and
+  envelope; the full validation registry is at the source URL.

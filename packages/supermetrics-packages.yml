@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: PyPI, npm, and the supermetrics-public GitHub organization
+packages:
+- language: python
+  registry: pypi
+  name: supermetrics
+  url: https://pypi.org/project/supermetrics/
+  install: pip install supermetrics
+  repository: https://github.com/supermetrics-public/supermetrics-python-sdk
+  summary: Official Python client for Supermetrics
+  official: true
+- language: go
+  registry: github
+  name: supermetrics-cli
+  url: https://github.com/supermetrics-public/supermetrics-cli
+  install: go install github.com/supermetrics-public/supermetrics-cli/cmd/supermetrics@latest
+  summary: >-
+    Command-line interface that wraps parts of the public Supermetrics API
+    (queries, login-links, backfills, connector-builder). Also distributed via
+    Homebrew tap, APT/YUM Linux repos, and GitHub Releases.
+  official: true
+- language: javascript
+  registry: npm
+  name: n8n-nodes-supermetrics
+  url: https://www.npmjs.com/package/n8n-nodes-supermetrics
+  install: npm install n8n-nodes-supermetrics
+  repository: https://github.com/supermetrics-public/n8n_connector
+  summary: n8n community node for the Supermetrics API (published by supermetrics-public)
+  official: true
+notes: >-
+  Additional first-party developer distributions from the supermetrics-public org:
+  homebrew-tap (Homebrew formula), linux-packages (APT/YUM repo), and
+  supermetrics-api-bruno-public (Bruno request collection for the Management, DTS,
+  Discovery, and Data Query APIs).

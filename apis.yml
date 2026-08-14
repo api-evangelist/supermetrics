@@ -18,20 +18,27 @@ x-backed-by:
 x-tier: stub
 x-tier-reason: portfolio-lead
 accessModel:
-  pricing: unknown
+  pricing: paid
   onboarding: self-serve
-  trial: false
+  trial: true
+  trial_days: 14
   try_now: false
   public: false
-  label: Self-serve signup
-  confidence: medium
+  label: Self-serve signup with a 14-day free trial; Data API access is a paid extra
+  confidence: high
   source:
+  - https://supermetrics.com/pricing
+  - https://docs.supermetrics.com/docs/how-to-start-a-supermetrics-free-trial.md
   - authentication
-  generated: '2026-07-22'
-  method: derived
+  generated: '2026-08-13'
+  method: searched
+  note: >-
+    Starter and Growth are self-serve list-price packages; Data API access is sold as an
+    extra on both. Management API access is Enterprise-only (quote). See
+    plans/supermetrics-plans-pricing.yml.
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-13'
 image: https://supermetrics.com/favicon.ico
 tags:
 - Company
@@ -143,8 +150,14 @@ common:
   url: security/supermetrics-vulnerability-disclosure.yml
 - type: Security
   url: https://supermetrics.com/.well-known/security.txt
+- type: Plans
+  url: plans/supermetrics-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/supermetrics-rate-limits.yml
+- type: DataModel
+  url: data-model/supermetrics-data-model.yml
 x-enrichment:
-  date: '2026-07-21'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 21
+  artifacts_added: 5
   pass: local-v1

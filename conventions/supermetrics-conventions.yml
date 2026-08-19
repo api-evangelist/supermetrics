@@ -49,7 +49,29 @@ error_envelope:
   ref: errors/supermetrics-problem-types.yml
   shape: '{meta:{request_id}, error:{code,message,description}, links:{docs,help}}'
 rate_limiting:
-  ref: null
+  ref: rate-limits/supermetrics-rate-limits.yml
   guidance: Limit to 20 requests/second per license and IP; 429 Too Many Requests on breach.
   concurrency: Queries run with limited concurrency per license tier; up to 10 duplicate requests queue.
+  response_headers: none documented — 429 status is the only runtime signal; no RateLimit-*/Retry-After
   docs: https://docs.supermetrics.com/apidocs/usage-limits
+api_keys:
+  management: https://hub.supermetrics.com (avatar menu -> API keys); admins/owners only
+  scoped: true
+  ip_restrictions: true
+  visibility: shown once at creation; not retrievable afterwards
+  revocation: disabling a key is immediate and irreversible
+  docs: https://docs.supermetrics.com/apidocs/managing-your-api-keys
+egress_allowlist:
+  domains: [supermetrics.com, api.supermetrics.com, apiv1.supermetrics.com, dts-api.supermetrics.com, hub.supermetrics.com, addon.supermetrics.com]
+  ips: [104.18.28.190, 104.18.29.190]
+  docs: https://docs.supermetrics.com/apidocs/supermetrics-ips
+event_surface:
+  webhooks: false
+  asyncapi: false
+  note: >-
+    Supermetrics documents no developer-facing webhook or event API. In-product alerting for
+    transfer/refresh failures is delivered to email, Slack or Microsoft Teams as a product
+    feature, not as a subscribable event contract, so no Webhooks/AsyncAPI artifact is
+    emitted. Consumers poll query status (async) instead.
+  ref: https://docs.supermetrics.com/docs/how-to-get-supermetrics-alerts-to-your-email-slack-or-microsoft-teams-channel.md
+data_model_ref: data-model/supermetrics-data-model.yml

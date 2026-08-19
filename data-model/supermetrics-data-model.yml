@@ -1,0 +1,150 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.supermetrics.com/llms.txt
+docs: https://docs.supermetrics.com/apidocs
+note: >-
+  Supermetrics publishes no OpenAPI, so this entity graph is not derived from a spec. It is
+  read from the API reference index that docs.supermetrics.com/llms.txt enumerates — every
+  entity and relationship below is backed by one or more named operation pages under
+  /apidocs/. Cardinalities come from the operation shapes (a list-under-a-parent page implies
+  has_many; a by-id page implies the belongs_to). Field-level schemas are NOT captured here
+  because Supermetrics does not publish machine-readable schemas; this is the resource graph,
+  not a schema registry.
+surfaces:
+- name: Data Query API
+  base: https://api.supermetrics.com/enterprise/v2
+  entities: [Query, DataSource, Account, Field, Segment, CustomField, Blend]
+- name: Management API
+  base: https://api.supermetrics.com/enterprise/v2
+  entities: [Team, Workspace, User, License, LicensePool, ApiKey, Login, LoginLink, AccountTag, Usage, Settings]
+  note: Management API access is an Enterprise-tier entitlement (see plans/).
+- name: Data Warehouse / Transfer Service (DTS)
+  base: https://dts-api.supermetrics.com
+  entities: [Destination, Transfer, TransferRun, Backfill, TableGroup]
+- name: Connector Builder
+  base: https://api.supermetrics.com/enterprise/v2
+  entities: [Connector, ConnectorSecret, ConnectorLog]
+entities:
+- name: Team
+  description: The top-level Supermetrics tenant that owns licenses, users, API keys and data-source logins.
+  operations: [get-team-details-by-team-id, update-team-properties, list-all-users-in-a-team, invite-a-new-user-to-a-team, update-a-user-s-role-in-a-team, remove-a-user-from-a-team]
+- name: Workspace
+  description: A sub-tenant under a team, with its own users, license pool and API keys.
+  operations: [get-a-list-of-workspaces-for-a-team, get-a-single-workspace-by-uuid, create-a-new-sub-workspace, update-a-workspace-by-uuid, get-all-users-in-a-workspace, invite-users-to-a-workspace, update-a-workspace-user-s-role, remove-a-user-from-a-workspace, get-pending-invitations-for-a-workspace, update-invitation-status-for-a-workspace]
+  identifier: uuid
+- name: User
+  description: A person with membership and a role in a team and/or workspace.
+  operations: [list-all-users-in-a-team, get-all-users-in-a-workspace, assign-users-to-a-license, unassign-a-user-from-a-license]
+- name: License
+  description: A seat/entitlement allocated from a workspace license pool to a user.
+  operations: [list-all-licenses-for-a-team, create-licenses-for-a-workspace-license-pool, get-licenses-associated-with-a-workspace-license-pool, assign-users-to-a-license, unassign-a-user-from-a-license, deallocate-a-license-from-the-workspace-license-pool]
+- name: LicensePool
+  description: The pool of licenses held by a workspace, from which individual licenses are allocated.
+  operations: [get-the-license-pool-for-a-workspace, create-or-update-the-license-pool-for-a-workspace]
+- name: ApiKey
+  description: A bearer credential scoped to a team or child workspace, with optional scopes and IP restrictions.
+  operations: [list-api-keys-for-a-team, create-an-api-key-for-a-team, get-an-api-key-for-a-team, update-an-api-key-for-a-team, list-api-keys-for-a-child-workspace, create-an-api-key-for-a-child-workspace, get-an-api-key-for-a-child-workspace, update-an-api-key-for-a-child-workspace]
+  docs: https://docs.supermetrics.com/apidocs/managing-your-api-keys
+- name: DataSource
+  description: A connectable marketing/ecommerce/sales platform (ds_id), e.g. GAWA for Google Ads. 174 are exposed to the MCP server.
+  operations: [data-sources, search-data-sources, search-data-sources-for-team, get-available-sources-2, get-datasource-configuration-details, get-release-statuses, get-search-categories, get-search-tags]
+  identifier: ds_id
+- name: Login
+  description: An authenticated data-source connection (a user's authorization to a platform) held by a team.
+  operations: [list-logins, get-login, revoke-login]
+- name: LoginLink
+  description: A single-use hosted link handing an end user a data-source authentication screen; the primary embed surface for partners.
+  operations: [create-login-link, get-login-link, list-login-links, update-login-link, close-login-link]
+- name: Account
+  description: An advertiser/property account available under a data-source login (ds_accounts).
+  operations: [get-accounts, accounts, list-login-accounts]
+- name: AccountTag
+  description: A named grouping of accounts inside a team, used to query several accounts as one unit.
+  operations: [create-a-new-account-tag, list-all-account-tags-in-a-team, fetch-a-single-account-tag-by-name, update-an-account-tag, delete-an-account-tag, add-accounts-to-an-account-tag, remove-accounts-from-an-account-tag]
+- name: Field
+  description: A metric or dimension exposed by a data source; the query vocabulary.
+  operations: [get-fields, fields, field-data-types, field-data-services, non-aggregatable-metrics]
+- name: Segment
+  description: A data-source-defined segment usable as a query constraint.
+  operations: [get-segments]
+- name: CustomField
+  description: A team-defined calculated/derived field layered over data-source fields.
+  operations: [fetch-custom-fields-list, create-a-new-custom-field, fetch-an-existing-custom-field, fetch-custom-field-metadata, update-an-existing-custom-field, remove-an-existing-custom-field]
+- name: Query
+  description: A data request against one or more data-source accounts; runs synchronously or asynchronously against a schedule_id.
+  operations: [query-data-2, query-data-3, get-query-1, list-queries-1, get-query-history, get-query-status, get-query-results]
+  identifier: schedule_id (async)
+- name: Blend
+  description: A saved combination of several data sources queried as one dataset.
+  operations: [create-a-blend, list-all-blends, get-a-blend-by-id, update-a-blend, delete-a-blend]
+- name: Destination
+  description: A warehouse/storage target (BigQuery, Snowflake, Redshift, S3, SFTP, and more) that transfers write into.
+  operations: [create-destination-1, list-destinations-1, get-destination-details-1, update-destination-1, delete-destination-1, get-destination-usage-1, search-destinations-for-team, test-destination-connection-1]
+- name: Transfer
+  description: A scheduled pipeline moving data from a data source into a destination.
+  operations: [create-transfer-2, list-transfers-2, get-transfer-configuration-2, update-transfer-configuration-2, delete-transfer-2, change-transfer-state-2, get-transfer-options-2, validate-transfer-configuration-2, validate-transfer-update-2]
+- name: TransferRun
+  description: One execution of a transfer.
+  operations: [list-transfer-runs-2, get-transfer-run-details-2]
+- name: Backfill
+  description: A historical re-fetch job attached to a transfer.
+  operations: [create-a-backfill-1, get-backfill-by-id-1, get-latest-backfill-for-a-transfer-1, list-incomplete-backfills-for-team-1, update-backfill-status-1]
+- name: TableGroup
+  description: A portable bundle of transfer table definitions that can be exported from and imported into a destination.
+  operations: [list-table-groups-1, import-table-group-1, export-table-group-1]
+- name: Connector
+  description: A custom data source built with Connector Builder.
+  operations: [create-a-connector, fetch-connector-information, fetch-information-for-connectors, update-connector-1, delete-connector-1, fetch-connector-schema, get-connector-logo-url, upload-connector-logo-1]
+- name: ConnectorSecret
+  description: A credential stored against a custom connector.
+  operations: [create-a-new-secret-for-a-connector, list-all-secrets-for-a-connector, update-the-value-of-a-connector-secret, delete-a-connector-secret]
+- name: ConnectorLog
+  description: An execution log entry for a custom connector.
+  operations: [fetch-connector-logs, fetch-connector-log-details]
+- name: Usage
+  description: Consumption reporting for a team — summary, timeseries, errors and top breakdowns.
+  operations: [get-usage-summary, get-usage-timeseries, get-usage-errors, get-top-usage-breakdown]
+- name: Settings
+  description: Team/workspace level configuration read and written through the Management API.
+  operations: [get-settings-1, update-settings-1]
+relationships:
+- {from: Team, to: Workspace, type: has_many, via: team_id}
+- {from: Team, to: User, type: has_many, via: team_id}
+- {from: Team, to: ApiKey, type: has_many, via: team_id}
+- {from: Team, to: Login, type: has_many, via: team_id}
+- {from: Team, to: AccountTag, type: has_many, via: team_id}
+- {from: Team, to: License, type: has_many, via: team_id}
+- {from: Team, to: Usage, type: has_one, via: team_id}
+- {from: Workspace, to: LicensePool, type: has_one, via: workspace_uuid}
+- {from: Workspace, to: ApiKey, type: has_many, via: workspace_uuid}
+- {from: Workspace, to: User, type: has_many, via: workspace_uuid}
+- {from: LicensePool, to: License, type: has_many, via: license_pool}
+- {from: License, to: User, type: has_many, via: assignment}
+- {from: Login, to: DataSource, type: belongs_to, via: ds_id}
+- {from: Login, to: Account, type: has_many, via: ds_accounts}
+- {from: LoginLink, to: Login, type: has_one, via: login_link_id}
+- {from: LoginLink, to: DataSource, type: belongs_to, via: ds_id}
+- {from: AccountTag, to: Account, type: has_many, via: accounts}
+- {from: DataSource, to: Field, type: has_many, via: ds_id}
+- {from: DataSource, to: Segment, type: has_many, via: ds_id}
+- {from: Query, to: DataSource, type: belongs_to, via: ds_id}
+- {from: Query, to: Account, type: has_many, via: ds_accounts}
+- {from: Query, to: Field, type: has_many, via: fields}
+- {from: Query, to: Segment, type: has_many, via: segments}
+- {from: Blend, to: DataSource, type: has_many, via: sources}
+- {from: CustomField, to: Field, type: belongs_to, via: base field}
+- {from: Transfer, to: DataSource, type: belongs_to, via: ds_id}
+- {from: Transfer, to: Destination, type: belongs_to, via: destination_id}
+- {from: Transfer, to: TransferRun, type: has_many, via: transfer_id}
+- {from: Transfer, to: Backfill, type: has_many, via: transfer_id}
+- {from: Destination, to: TableGroup, type: has_many, via: destination_id}
+- {from: Connector, to: ConnectorSecret, type: has_many, via: connector_id}
+- {from: Connector, to: ConnectorLog, type: has_many, via: connector_id}
+- {from: Connector, to: DataSource, type: has_one, via: published connector becomes a ds_id}
+coverage:
+  entities: 23
+  relationships: 32
+  schema_fields_captured: false
+  schema_gap_reason: >-
+    Supermetrics publishes no OpenAPI, JSON Schema or other machine-readable contract, so
+    per-entity field definitions cannot be captured without fabricating them.

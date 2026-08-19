@@ -1,0 +1,99 @@
+generated: '2026-08-13'
+method: searched
+source: https://supermetrics.com/pricing
+docs: https://supermetrics.com/pricing
+currency: USD
+billing_periods: [monthly, yearly]
+notes: >-
+  Supermetrics publishes two self-serve packages (Starter, Growth) with list prices and a
+  quote-only Enterprise tier. Yearly billing is advertised at a 20% saving. Prices shown
+  are "from" prices — every package is customizable with paid extras (additional data
+  sources, users, accounts per data source, destinations). "Data API access" is listed as
+  an extra on Starter and Growth and as an included entitlement on Enterprise; Management
+  API access is Enterprise-only, which is the boundary that matters for API consumers.
+trial:
+  available: true
+  length_days: 14
+  url: https://supermetrics.com/start-trial
+  docs: https://docs.supermetrics.com/docs/how-to-start-a-supermetrics-free-trial.md
+plan_count: 3
+plans:
+- name: Starter
+  audience: Individuals and small teams starting with marketing intelligence.
+  price_monthly: 55
+  price_yearly_per_month: 44
+  currency: USD
+  price_qualifier: from
+  quote_only: false
+  url: https://supermetrics.com/pricing
+  included:
+    core_destinations: 1
+    data_sources: 3
+    users: 1
+    accounts_per_data_source: 3
+    ai_credits_monthly: 4000
+    data_refresh: Weekly (Google Sheets only)
+    sso: true
+    dashboards: true
+    data_volume_fees: none
+  api_access:
+    data_api: extra
+    management_api: false
+- name: Growth
+  audience: Growing teams that need more data and automation.
+  price_monthly: 222
+  price_yearly_per_month: 177
+  currency: USD
+  price_qualifier: from
+  quote_only: false
+  url: https://supermetrics.com/pricing
+  included:
+    core_destinations: 1
+    data_sources: 6
+    users: 2
+    accounts_per_data_source: 7
+    ai_credits_monthly: 12000
+    data_refresh: Daily (Google Sheets only)
+    sso: true
+    dashboards: true
+    data_volume_fees: none
+  api_access:
+    data_api: extra
+    management_api: false
+- name: Enterprise
+  audience: >-
+    Organizations that require enterprise-grade data solutions, collaboration and support.
+  price_monthly: null
+  price_yearly_per_month: null
+  currency: USD
+  price_qualifier: quote
+  quote_only: true
+  url: https://supermetrics.com/pricing
+  included:
+    core_destinations: Core + data-warehouse destinations (Snowflake, BigQuery, and more)
+    data_sources: All data sources
+    users: Custom
+    accounts_per_data_source: Custom
+    ai_credits_monthly: Custom
+    data_refresh: On-demand
+    sso: Enterprise SSO with SAML
+    dashboards: true
+    data_volume_fees: none
+    other:
+    - Data Transformations
+    - Custom Data Import
+    - Data Warehousing
+    - Supermetrics Storage
+    - Multiple teams
+    - Data residency and region control
+    - Premium support and Customer Success Manager
+  api_access:
+    data_api: true
+    management_api: true
+extras:
+  note: >-
+    All packages are customizable with paid extras — additional destinations, users, data
+    sources and accounts per data source. Data API access is sold as an extra on the
+    self-serve packages.
+usage_limits_ref: rate-limits/supermetrics-rate-limits.yml
+fair_usage_policy: https://supermetrics.com/fair-usage-policy

@@ -1,0 +1,1 @@
+{"resource":"https://mcp.supermetrics.com/","authorization_servers":["https://api.supermetrics.com"],"scopes_supported":["team_read","user_read","ds_logins_read","ds_accounts_read","ds_queries_run","openid","offline_access","auth_create_account","ds_login_links_read","ds_login_links_write","ds_platform_write"],"bearer_methods_supported":["header"]}

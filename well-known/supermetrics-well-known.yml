@@ -1,6 +1,7 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
-source: live probes of /.well-known/ on Supermetrics hosts
+source: live probes of /.well-known/ on every Supermetrics host named in apis.yml and in the published IP-allowlist doc
+checked: '2026-08-13'
 hosts:
 - host: https://api.supermetrics.com
   documents:
@@ -16,15 +17,90 @@ hosts:
     status: 404
   - path: /.well-known/ai-plugin.json
     status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://mcp.supermetrics.com
+  documents:
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: supermetrics-mcp-oauth-protected-resource.json
+    spec: RFC 9728
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    note: served on the MCP host, delegating to the api.supermetrics.com authorization server; identical payload to the copy already saved from api.supermetrics.com
+    spec: RFC 8414
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
 - host: https://supermetrics.com
   documents:
   - path: /.well-known/security.txt
     status: 200
     file: supermetrics-security.txt
+    spec: RFC 9116
   - path: /.well-known/openid-configuration
     status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://docs.supermetrics.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://dts-api.supermetrics.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://apiv1.supermetrics.com
+  soft_200: true
+  documents:
+  - path: '/.well-known/* (all probed paths)'
+    status: 200
+    served: false
+    note: >-
+      Answers HTTP 200 with a ZERO-BYTE body and content-type text/html for every path
+      probed, including /openapi.json and both agent-card paths. A soft-200 catch-all, not a
+      served document. Counted as a MISS on every path — no pointer is emitted from this host.
+- host: https://hub.supermetrics.com
+  soft_200: true
+  documents:
+  - path: '/.well-known/* (all probed paths)'
+    status: 200
+    served: false
+    note: >-
+      Single-page-app catch-all: returns the Hub application HTML shell (<!DOCTYPE html>) with
+      HTTP 200 for every path including /.well-known/agent-card.json. Rejected as a document;
+      counted as a MISS on every path.
+summary:
+  real_documents: 4
+  types_served: [openid-configuration, oauth-authorization-server, oauth-protected-resource, security.txt]
+  api_catalog: false
+  ai_plugin: false
+  agent_card: false
 notes: >-
-  api.supermetrics.com publishes both OIDC discovery (RFC 8414 metadata) and an
-  oauth-authorization-server document advertising authorization_code + refresh_token
-  grants, PKCE (S256), Dynamic Client Registration, and 13 scopes. The marketing host
-  supermetrics.com serves the RFC 9116 security.txt.
+  api.supermetrics.com publishes OIDC discovery and RFC 8414 authorization-server metadata
+  advertising authorization_code + refresh_token grants, PKCE (S256), Dynamic Client
+  Registration (RFC 7591) and 13 scopes. mcp.supermetrics.com additionally publishes RFC 9728
+  protected-resource metadata naming that same authorization server and 11 scopes — the
+  discovery chain an MCP client walks after the 401 challenge on /mcp. The marketing host
+  serves the RFC 9116 security.txt. No /.well-known/api-catalog, no ai-plugin.json, and no
+  A2A agent card on any host: both agent-card paths were probed on all six hosts and every
+  200 came from a soft-200 or SPA catch-all, so nothing was saved to a2a/.

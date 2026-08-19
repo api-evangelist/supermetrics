@@ -1,6 +1,7 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
-source: PyPI, npm, and the supermetrics-public GitHub organization
+source: PyPI, npm, GitHub Releases, and the supermetrics-public GitHub organization
+currency_checked: '2026-08-13'
 packages:
 - language: python
   registry: pypi
@@ -8,28 +9,140 @@ packages:
   url: https://pypi.org/project/supermetrics/
   install: pip install supermetrics
   repository: https://github.com/supermetrics-public/supermetrics-python-sdk
-  summary: Official Python client for Supermetrics
+  summary: >-
+    Official Python client for the Supermetrics API — query marketing data, manage OAuth
+    login links, list data-source accounts, and trigger/monitor Data Warehouse backfills.
+    Sync and async clients, type-safe Pydantic models. Requires Python 3.11+.
+  docs: https://docs.supermetrics.com/apidocs/python-sdk
   official: true
+  version: 0.3.0b1
+  published: '2026-06-11'
+  release_status: beta
+  note: >-
+    Latest PyPI release is a pre-release (0.3.0b1). Supermetrics labels the SDK a beta and
+    says interfaces may change without notice. Repository is actively pushed (2026-08-12),
+    so the registry lags the source.
 - language: go
-  registry: github
+  registry: github-releases
   name: supermetrics-cli
   url: https://github.com/supermetrics-public/supermetrics-cli
   install: go install github.com/supermetrics-public/supermetrics-cli/cmd/supermetrics@latest
+  repository: https://github.com/supermetrics-public/supermetrics-cli
   summary: >-
-    Command-line interface that wraps parts of the public Supermetrics API
-    (queries, login-links, backfills, connector-builder). Also distributed via
-    Homebrew tap, APT/YUM Linux repos, and GitHub Releases.
+    Official cross-platform CLI wrapping the public Supermetrics API — queries, login-links,
+    Data Warehouse backfills, and Connector Builder. Distributed via GitHub Releases, a
+    Homebrew tap, and APT/YUM Linux repositories.
+  docs: https://docs.supermetrics.com/apidocs/cli
   official: true
+  version: v0.4.2
+  published: '2026-06-30'
+  release_status: alpha
+  note: >-
+    Not published to a language package registry — pkg.go.dev resolves the module from the
+    repo, and the distributable binaries ship through GitHub Releases. Version and date read
+    from the latest GitHub Release. Supermetrics labels the CLI an alpha.
+  surface_ref: cli/supermetrics-cli.yml
+- language: ruby
+  registry: homebrew
+  name: supermetrics-public/tap/supermetrics
+  url: https://github.com/supermetrics-public/homebrew-tap
+  install: brew install supermetrics-public/tap/supermetrics
+  summary: Homebrew tap distributing the Supermetrics CLI on macOS and Linux.
+  official: true
+  version: null
+  published: null
+  note: >-
+    A Homebrew tap has no registry metadata endpoint. The formula in the tap tracks the CLI
+    release above (v0.4.2, 2026-06-30); the tap repository itself was last pushed 2026-06-30.
+    Recorded as null rather than restating the CLI version as if it were independently
+    published.
+- language: shell
+  registry: linux-repo
+  name: supermetrics
+  url: https://supermetrics-public.github.io/linux-packages/
+  install: sudo apt-get install supermetrics   # or: sudo yum install supermetrics
+  repository: https://github.com/supermetrics-public/linux-packages
+  summary: First-party APT/YUM package repository distributing the Supermetrics CLI on Linux.
+  official: true
+  version: null
+  published: null
+  note: >-
+    An APT/YUM repo exposes no JSON metadata endpoint comparable to npm/PyPI, and the
+    published install command is unpinned — a consumer running `apt-get install supermetrics`
+    cannot tell which CLI version they will receive. That unpinned distribution is the
+    finding; recorded as null with this note rather than guessed.
 - language: javascript
   registry: npm
   name: n8n-nodes-supermetrics
   url: https://www.npmjs.com/package/n8n-nodes-supermetrics
   install: npm install n8n-nodes-supermetrics
   repository: https://github.com/supermetrics-public/n8n_connector
-  summary: n8n community node for the Supermetrics API (published by supermetrics-public)
+  summary: n8n community node for the Supermetrics API, published by the supermetrics-public org.
   official: true
+  version: 0.1.21
+  published: '2026-03-29'
+  note: >-
+    Registry release is 4+ months behind the source repository (last pushed 2026-07-14) —
+    a mild decay signal on the npm distribution, not on the API itself.
+- language: python
+  registry: github
+  name: airflow-provider-supermetrics
+  url: https://github.com/supermetrics-public/airflow-provider-supermetrics
+  install: pip install git+https://github.com/supermetrics-public/airflow-provider-supermetrics
+  repository: https://github.com/supermetrics-public/airflow-provider-supermetrics
+  summary: Official Apache Airflow provider for Supermetrics (hooks/operators for scheduled extracts).
+  official: true
+  version: 0.1.0
+  published: null
+  note: >-
+    Version read from pyproject.toml in the repository (0.1.0). NOT on PyPI —
+    https://pypi.org/pypi/airflow-provider-supermetrics/json returns 404, so there is no
+    registry publication date to record. Source-only distribution; repo last pushed
+    2026-07-29.
+tooling:
+- kind: request-collection
+  name: supermetrics-api-bruno-public
+  format: Bruno
+  url: https://github.com/supermetrics-public/supermetrics-api-bruno-public
+  summary: >-
+    First-party Bruno collection covering the Management, DTS, Discovery, and Data Query
+    APIs — sample requests, bring your own API key. Supermetrics publishes no public Postman
+    workspace; Bruno is the equivalent surface.
+  official: true
+  version: null
+  published: null
+  note: A git-distributed request collection with no registry or tagged releases; repo last pushed 2026-07-10.
+- kind: agent-plugin
+  name: claude-marketing-plugin
+  url: https://github.com/supermetrics-public/claude-marketing-plugin
+  summary: >-
+    Marketing analytics plugin for Claude Code — 42 workflows for performance marketing,
+    demand gen, content, field and ecommerce teams, built on the Supermetrics connector.
+  official: true
+  version: null
+  published: null
+  note: Git-distributed, no registry publication; repo last pushed 2026-05-12.
+- kind: agent-plugin
+  name: connector-builder-plugin
+  url: https://github.com/supermetrics-public/connector-builder-plugin
+  summary: >-
+    Claude plugin that turns a working script or vendor docs into a saved, validated
+    Supermetrics Connector via the Supermetrics CLI.
+  official: true
+  version: null
+  published: null
+  note: Git-distributed, no registry publication; repo last pushed 2026-06-25.
+registries_checked:
+- {registry: pypi, result: 'supermetrics found; airflow-provider-supermetrics 404'}
+- {registry: npm, result: n8n-nodes-supermetrics found}
+- {registry: 'maven-central', result: none}
+- {registry: nuget, result: none}
+- {registry: rubygems, result: 'none (Homebrew tap is not a gem)'}
+- {registry: packagist, result: none}
+- {registry: 'crates.io', result: none}
+- {registry: 'pkg.go.dev', result: 'module resolves from the GitHub repo; no independent registry release'}
 notes: >-
-  Additional first-party developer distributions from the supermetrics-public org:
-  homebrew-tap (Homebrew formula), linux-packages (APT/YUM repo), and
-  supermetrics-api-bruno-public (Bruno request collection for the Management, DTS,
-  Discovery, and Data Query APIs).
+  Six first-party client distributions plus three first-party tooling repos. The decay
+  picture: the Python SDK is a labelled beta whose newest PyPI artifact is a pre-release,
+  the Go CLI is a labelled alpha, and the npm node trails its source by months — every
+  first-party client is pre-1.0 against a v2 production API.

@@ -1,0 +1,66 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.supermetrics.com/apidocs/usage-limits.md
+docs: https://docs.supermetrics.com/apidocs/usage-limits
+api: https://api.supermetrics.com/enterprise/v2
+limit_count: 3
+limits:
+- name: API request rate
+  scope: per-license-and-ip
+  window: 1s
+  limit: 20
+  unit: requests
+  burst: null
+  enforcement: >-
+    Supermetrics enforces per-second rate limits that vary by license and IP address; the
+    docs publish 20 requests/second as the suggested client ceiling rather than a hard
+    contractual number, and reserve the right to change limits without prior notice.
+  status_on_exhaustion: 429
+  source: https://docs.supermetrics.com/apidocs/usage-limits
+- name: Query concurrency
+  scope: per-license
+  window: concurrent
+  limit: null
+  unit: concurrent queries
+  enforcement: >-
+    Data-source queries execute with restricted, license-specific concurrency. Queries are
+    queued and drained a few at a time in arrival order. The concurrency number itself is
+    license-specific and not published; contact Supermetrics to change it.
+  status_on_exhaustion: null
+  source: https://docs.supermetrics.com/apidocs/usage-limits
+- name: Duplicate-query coalescing
+  scope: per-license
+  window: concurrent
+  limit: 10
+  unit: duplicate waiting requests
+  enforcement: >-
+    Identical queries issued simultaneously are de-duplicated — only the first request runs
+    the query and the rest wait on its result. A maximum of 10 duplicate waiting requests is
+    supported. This is request coalescing, not a client-supplied idempotency key.
+  status_on_exhaustion: null
+  source: https://docs.supermetrics.com/apidocs/usage-limits
+response_headers:
+  documented: false
+  note: >-
+    Supermetrics does not document any RateLimit-* / X-RateLimit-* response headers or a
+    Retry-After header for the Product API. The only published runtime signal on exhaustion
+    is the HTTP 429 status with the standard error envelope
+    (meta.request_id + error.code/message/description). An agent must back off on 429 alone;
+    there is no header-carried budget to read. Recorded as an honest gap, not an absence of
+    limits.
+  headers: []
+status_codes:
+  exhausted: 429
+error_envelope_ref: errors/supermetrics-problem-types.yml
+other_limits:
+  query_runtime_max: four hours
+  async_result_retention: one hour after the query stops
+  data_source_quotas: >-
+    Upstream data-source providers (Google Ads, Meta, and others) impose their own daily
+    delivery quotas that Supermetrics passes through and documents separately.
+  data_source_quota_docs: https://docs.supermetrics.com/docs/about-daily-request-quotas-and-limits
+  subscription_limits: https://supermetrics.com/pricing
+  fair_usage_policy: https://supermetrics.com/fair-usage-policy
+best_practices:
+- Avoid short bursts; space requests out rather than sending them back to back.
+- Use asynchronous queries (sync_timeout=0) to schedule work, then poll for results.

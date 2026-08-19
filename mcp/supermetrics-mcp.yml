@@ -9,23 +9,66 @@ server:
   datasources_catalog: https://mcp.supermetrics.com/datasources
   auth:
     type: oauth2
-    description: >-
-      OAuth2 authorization at api.supermetrics.com (authorization_code + PKCE,
-      Dynamic Client Registration, client_id metadata document supported) — the same
-      authorization server that fronts the Supermetrics API.
+    description: OAuth2 authorization at api.supermetrics.com (authorization_code + PKCE, Dynamic Client
+      Registration, client_id metadata document supported) — the same authorization server that fronts
+      the Supermetrics API.
     authorization_server: https://api.supermetrics.com/.well-known/oauth-authorization-server
 capabilities:
-  description: >-
-    Hosted, remote MCP server that connects AI assistants (Claude, ChatGPT, Gemini,
-    Microsoft Copilot, n8n) directly to all of a customer's Supermetrics data sources
-    through a single connection: query marketing data via natural language, run health
-    checks, pacing checks and performance alerts, and create or modify campaigns.
-  data_sources: >-
-    Google Ads, Facebook, TikTok, Google Analytics, LinkedIn Ads and 100+ more
-    (full list at https://mcp.supermetrics.com/datasources).
+  description: 'Hosted, remote MCP server that connects AI assistants (Claude, ChatGPT, Gemini, Microsoft
+    Copilot, n8n) directly to all of a customer''s Supermetrics data sources through a single connection:
+    query marketing data via natural language, run health checks, pacing checks and performance alerts,
+    and create or modify campaigns.'
+  data_sources: Google Ads, Facebook, TikTok, Google Analytics, LinkedIn Ads and 100+ more (full list
+    at https://mcp.supermetrics.com/datasources).
 clients:
-- {name: Supermetrics for Claude, docs: https://docs.supermetrics.com/docs/supermetrics-for-claude.md}
-- {name: Supermetrics for ChatGPT, docs: https://docs.supermetrics.com/docs/supermetrics-chatgpt-integration.md}
-- {name: Marketing Intelligence Agent for Gemini, docs: https://docs.supermetrics.com/docs/supermetrics-marketing-intelligence-agent-for-gemini.md}
-- {name: Marketing Analyst for Microsoft Copilot, docs: https://docs.supermetrics.com/docs/supermetrics-marketing-analyst-for-microsoft-copilot.md}
-- {name: Claude marketing plugin, repo: https://github.com/supermetrics-public/claude-marketing-plugin}
+- name: Supermetrics for Claude
+  docs: https://docs.supermetrics.com/docs/supermetrics-for-claude.md
+- name: Supermetrics for ChatGPT
+  docs: https://docs.supermetrics.com/docs/supermetrics-chatgpt-integration.md
+- name: Marketing Intelligence Agent for Gemini
+  docs: https://docs.supermetrics.com/docs/supermetrics-marketing-intelligence-agent-for-gemini.md
+- name: Marketing Analyst for Microsoft Copilot
+  docs: https://docs.supermetrics.com/docs/supermetrics-marketing-analyst-for-microsoft-copilot.md
+- name: Claude marketing plugin
+  repo: https://github.com/supermetrics-public/claude-marketing-plugin
+deployment:
+  mode: remote
+  endpoint: https://mcp.supermetrics.com/mcp
+  transport: streamable-http
+  auth: oauth
+  verified: probed
+  checked: '2026-08-13'
+  note: >-
+    CORRECTION to the 2026-08-12 catalog MCP census, which recorded mode: none / probe: dead.
+    The census probed the host root (https://mcp.supermetrics.com), which answers 405 Method
+    Not Allowed to a POST — it only serves OPTIONS/GET/HEAD. The MCP endpoint is one path
+    down, at /mcp, and it is live: POST tools/list returns HTTP 401 with
+    WWW-Authenticate: Bearer error="invalid_token",
+    resource_metadata="https://mcp.supermetrics.com/.well-known/oauth-protected-resource".
+    That is a correctly-implemented RFC 9728 OAuth challenge, not a dead endpoint. The server
+    is a remote agent surface an MCP client can reach today after an OAuth authorization; no
+    stdio package is published.
+  evidence:
+  - {url: 'https://mcp.supermetrics.com/mcp', method: 'POST tools/list', http_status: 401, signal: 'WWW-Authenticate Bearer invalid_token + resource_metadata'}
+  - {url: 'https://mcp.supermetrics.com/', method: 'POST tools/list', http_status: 405, signal: 'allow: OPTIONS, GET, HEAD — the census false negative'}
+  - {url: 'https://mcp.supermetrics.com/.well-known/oauth-protected-resource', method: GET, http_status: 200}
+  - {url: 'https://mcp.supermetrics.com/.well-known/oauth-authorization-server', method: GET, http_status: 200}
+  - {url: 'https://mcp.supermetrics.com/datasources', method: GET, http_status: 200, signal: '174 data sources listed'}
+protected_resource:
+  file: well-known/supermetrics-mcp-oauth-protected-resource.json
+  resource: https://mcp.supermetrics.com/
+  authorization_servers: [https://api.supermetrics.com]
+  bearer_methods_supported: [header]
+  scopes_supported: [team_read, user_read, ds_logins_read, ds_accounts_read, ds_queries_run, openid, offline_access, auth_create_account, ds_login_links_read, ds_login_links_write, ds_platform_write]
+  spec: RFC 9728 OAuth 2.0 Protected Resource Metadata
+tools:
+  published: false
+  introspection: gated
+  note: >-
+    tools/list requires an authorized bearer token, so the live tool set and its inputSchemas
+    could not be captured. Supermetrics publishes no tool list in llms.txt either — the
+    site llms.txt documents the endpoint, the auth model and the metadata documents but not
+    the tools. Recorded as an honest gap; no candidate tools are derived because there is no
+    OpenAPI to derive them from. Capturing the real tool set requires authenticated
+    introspection with a Supermetrics account.
+datasource_count: 174

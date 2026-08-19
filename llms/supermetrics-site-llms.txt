@@ -1,0 +1,311 @@
+# Supermetrics
+
+> Supermetrics is a marketing intelligence platform that connects marketing, ecommerce, and sales data sources to business intelligence tools, data warehouses, cloud storage, and spreadsheets. Used by 200K+ companies in 120 countries to automate data transfers, reduce reporting time, and maintain SOC2/GDPR/CCPA compliance.
+
+## Developer Tools
+- [Supermetrics API](https://supermetrics.com/products/api): Supermetrics provides a RESTful API that allows developers to programmatically extract marketing data from 70+ sources and integrate it into custom applications. Returns data in JSON/CSV formats with query management capabilities
+
+## MCP Server (for AI agents)
+
+Supermetrics runs a remote Model Context Protocol (MCP) server that lets AI agents query 170+ marketing data sources on a user's behalf, using OAuth-authorized access.
+
+- [MCP endpoint](https://mcp.supermetrics.com/mcp): Streamable HTTP MCP server. Unauthenticated requests return HTTP 401 with a `WWW-Authenticate` header pointing at the protected-resource metadata below.
+- [Protected resource metadata](https://mcp.supermetrics.com/.well-known/oauth-protected-resource): RFC 9728 metadata naming the authorization server and supported scopes.
+- [Authorization server metadata](https://mcp.supermetrics.com/.well-known/oauth-authorization-server): RFC 8414 metadata. Supports dynamic client registration (RFC 7591) and PKCE (S256).
+- Authorization server: `https://api.supermetrics.com`
+- Auth: OAuth 2.1, Bearer token in the `Authorization` header.
+
+## Business Intelligence & Reporting Tools
+- [Excel Integration](https://supermetrics.com/products/excel): Supermetrics add-in connects directly to Excel, automatically pulling marketing data from platforms like Google Ads and Facebook into spreadsheet cells. Features scheduled refreshes and pre-built templates for common marketing reports
+- [Google Sheets Integration](https://supermetrics.com/products/google-sheets): Supermetrics add-on installs in Google Sheets, enabling users to query marketing platforms and populate sheets with campaign data, metrics, and dimensions automatically with email alerts for data changes
+- [Power BI Integration](https://supermetrics.com/products/power-bi): Supermetrics connector appears as a data source in Power BI, allowing users to import marketing data from multiple ad platforms into Power BI datasets and dashboards with drag-and-drop functionality
+- [Looker Studio Integration](https://supermetrics.com/products/looker-studio): Supermetrics connector integrates with Looker Studio as a data source, enabling users to create marketing dashboards by connecting advertising platforms directly to Google's visualization tool
+
+## Data Warehouses Connections
+- [BigQuery Integration](https://supermetrics.com/products/bigquery): Supermetrics automatically transfers marketing data from advertising platforms into BigQuery tables with customizable schemas, scheduled data loads, and historical data backfills for data warehouse analytics
+- [Snowflake Integration](https://supermetrics.com/products/snowflake): Supermetrics pipelines marketing data directly into Snowflake tables, handling data transformations and providing scheduled transfers from advertising platforms to the data warehouse
+- [Amazon Redshift Integration](https://supermetrics.com/products/amazon-redshift): Supermetrics loads marketing data from advertising platforms into Redshift clusters, managing table creation, data types, and automated refresh schedules
+- [Azure Synapse Integration](https://supermetrics.com/products/azure-synapse): Supermetrics transfers marketing data into Azure Synapse Analytics tables with configurable refresh schedules and automatic data type mapping
+- [Google AlloyDB Integration](https://supermetrics.com/products/google-alloydb): Supermetrics moves marketing data from advertising platforms into AlloyDB PostgreSQL tables for integration with application databases
+- [Azure SQL Database Integration](https://supermetrics.com/products/azure-sql-database): Supermetrics populates Azure SQL Database tables with marketing data from advertising platforms, enabling SQL queries on marketing performance data
+
+## Cloud Storage Connections
+- [Amazon S3 Integration](https://supermetrics.com/products/amazon-s3): Supermetrics exports marketing data from advertising platforms and stores it as files in S3 buckets in various formats (JSON, CSV, Parquet) for data lake storage and processing
+- [Google Cloud Storage Integration](https://supermetrics.com/products/google-cloud-storage): Supermetrics delivers marketing data from advertising platforms to Google Cloud Storage buckets, creating structured files that can be processed by other Google Cloud services
+- [Azure Storage Integration](https://supermetrics.com/products/azure-storage): Supermetrics uploads marketing data from advertising platforms to Azure Storage containers as structured files for further processing by Azure analytics services
+
+## Data Transfer
+- [SFTP Integration](https://supermetrics.com/products/sftp): Supermetrics securely transfers marketing data files from advertising platforms to SFTP servers, delivering scheduled reports and data exports to on-premise systems
+
+## Industry Solutions
+- [Enterprise](https://supermetrics.com/solutions/enterprise): Supermetrics centralizes global marketing data for large organizations, providing SOC2/GDPR/CCPA compliant data transfers to eliminate data silos and enable better marketing investment decisions across multiple teams and regions
+- [Small & Midsize Business](https://supermetrics.com/solutions/smb): Supermetrics automates marketing reporting for growing businesses, eliminating manual CSV exports and copy-paste work to save 10-30 hours monthly while enabling real-time decision making through automated data refreshes
+- [Agency](https://supermetrics.com/solutions/agency): Supermetrics helps agencies of all sizes build scalable reporting infrastructure, providing automated client reporting, cross-channel budget management, and data blending capabilities to improve client retention and expand service offerings
+- [Ecommerce](https://supermetrics.com/solutions/ecommerce): Supermetrics connects 170+ marketing and sales sources including Shopify and WooCommerce, enabling DTC brands to optimize conversion rates, manage budget pacing, and prepare for seasonal peaks through historical data analysis
+- [Data Teams](https://supermetrics.com/solutions/data-teams): Supermetrics eliminates the need for data teams to build and maintain marketing data pipelines, providing reliable data infrastructure so teams can focus on data modeling, attribution analysis, and delivering insights to stakeholders
+- [Large Consumer Brands](https://supermetrics.com/solutions/large-consumer-brands): Supermetrics provides enterprise-scale marketing data integration for major consumer brands managing complex multi-channel campaigns and requiring sophisticated attribution modeling
+- [B2B SaaS](https://supermetrics.com/solutions/b2b-saas): Supermetrics helps B2B SaaS companies track marketing-influenced revenue by connecting advertising data with CRM and product analytics for comprehensive funnel analysis
+
+## Use Case Solutions
+- [Data Visualization](https://supermetrics.com/solutions/data-visualization): Supermetrics provides the data foundation for creating marketing dashboards and reports, with specialized toolkit resources for Looker Studio design consistency across teams and organizations
+- [Data Visualization Toolkit](https://supermetrics.com/solutions/data-visualization/toolkit): Supermetrics offers a comprehensive Looker Studio toolkit including UI style guides, templates, and best practices for organizations creating coherent reports with multiple editors
+- [Data Warehousing](https://supermetrics.com/solutions/data-warehousing): Supermetrics automatically loads marketing data into data warehouses without coding, enabling marketing mix modeling, attribution analysis, and historical trend analysis with full data ownerships
+- [Performance Marketing](https://supermetrics.com/solutions/performance-marketing): Supermetrics connects 100+ ad sources to provide cross-channel ROAS tracking, automated budget pacing reports, and full-funnel performance visibility for paid advertising optimization
+- [Social Media](https://supermetrics.com/solutions/social-media): Supermetrics consolidates social media performance data from multiple platforms, enabling unified social media reporting and cross-platform campaign comparison
+- [SEO](https://supermetrics.com/solutions/seo): Supermetrics integrates SEO data sources with advertising and analytics data to provide comprehensive organic and paid search performance analysis
+- [Full-Funnel Measurement](https://supermetrics.com/solutions/full-funnel-measurement): Supermetrics connects top-of-funnel advertising data with bottom-of-funnel conversion and CRM data to enable complete customer journey tracking and attribution modeling
+- [Budget Pacing](https://supermetrics.com/solutions/budget-pacing): Supermetrics provides automated budget tracking across all advertising channels with rule-based email alerts for overspend and underspend notifications
+- [Spreadsheets](https://supermetrics.com/solutions/spreadsheets): Supermetrics transforms Excel and Google Sheets into powerful marketing reporting platforms with automated data refreshes, email notifications, and pre-built templates for common marketing reports
+
+## Paid Advertising Connectors
+- [Google Ads](https://supermetrics.com/connectors/google-ads): Supermetrics extracts Google Ads campaign data with one-click authorization, providing 150 metrics and 612 dimensions including ad spend, impressions, clicks, and conversions for comprehensive PPC analysis
+- [Facebook Ads](https://supermetrics.com/connectors/facebook-ads): Supermetrics connects to Facebook and Instagram Ads accounts, delivering 528 metrics and 230 dimensions for campaign performance, audience insights, and cross-platform advertising analysis
+- [LinkedIn Ads](https://supermetrics.com/connectors/linkedin-ads): Supermetrics pulls LinkedIn advertising data, delivering 88 metrics and 97 dimensions for campaign performance, audience targeting, and B2B lead generation metrics for professional network advertising analysis
+- [Microsoft Advertising](https://supermetrics.com/connectors/microsoft-advertising): Supermetrics connects to Microsoft Advertising (formerly Bing Ads), delivering 84 metrics and 147 dimensions to extract search advertising data, providing comprehensive PPC metrics for multi-search-engine campaigns
+- [TikTok Ads](https://supermetrics.com/connectors/tiktok-ads): Supermetrics extracts TikTok advertising campaign data delivering 268 metrics and 130 dimensions for video performance metrics, audience engagement, and short-form video advertising analytics
+- [X Ads, Formerly Twitter](https://supermetrics.com/connectors/twitter-ads): Supermetrics connects to X Ads (Twitter) platform to pull promoted tweet performance, audience targeting data, and social media advertising metrics using 157 metrics and 124 dimensions.
+- [Amazon Ads](https://supermetrics.com/connectors/amazon-ads): Supermetrics extracts Amazon advertising data including sponsored product campaigns, display ads, and e-commerce advertising performance metrics using 99 metrics and 46 dimensions
+- [Snapchat Marketing](https://supermetrics.com/connectors/snapchat-marketing): Supermetrics pulls Snapchat Ads data, delivering 285 metrics and 81 dimensions for AR lens performance, story ads metrics, and mobile-first advertising campaign analytics
+- [Reddit Ads](https://supermetrics.com/connectors/reddit-ads): Supermetrics connects to Reddit advertising platform, delivering 61 metrics and 56 dimensions to extract community-based advertising data and discussion forum marketing metrics
+- [Kwai Ads](https://supermetrics.com/connectors/kwai-ads): Supermetrics extracts Kwai advertising data, delivering 75 metrics and 29 dimensions for short-video platform marketing campaigns and audience engagement metrics
+- [Line Ads](https://supermetrics.com/connectors/line-ads): Supermetrics connects to Line Ads platform, delivering 84 metrics and 63 dimensions to pull messaging app advertising data and Asian market social media campaign metrics
+- [Teads](https://supermetrics.com/connectors/teads): Supermetrics extracts Teads native advertising data, delivering 164 metrics and 42 dimensions including video ad performance and programmatic advertising metrics
+
+## Social Media Organic Connectors
+- [Facebook Insights](https://supermetrics.com/connectors/facebook-insights): Supermetrics pulls organic Facebook page performance data including post engagement, audience demographics, and social media reach metrics
+- [Instagram Insights](https://supermetrics.com/connectors/instagram-insights): Supermetrics extracts Instagram business account data including post performance, story metrics, and visual content engagement analytics
+- [LinkedIn Company Pages](https://supermetrics.com/connectors/linkedin-company-pages): Supermetrics connects to LinkedIn company pages to pull B2B social media metrics, follower growth, and professional network engagement data
+- [Pinterest Organic](https://supermetrics.com/connectors/pinterest-organic): Supermetrics extracts Pinterest business account data including pin performance, board analytics, and visual discovery platform metrics
+- [TikTok Organic](https://supermetrics.com/connectors/tiktok-organic): Supermetrics pulls organic TikTok account performance including video views, engagement rates, and short-form content analytics
+- [X (Twitter) Organic](https://supermetrics.com/connectors/twitter-organic): Supermetrics extracts organic X (Twitter) account data including tweet performance, follower growth, and social media engagement metrics
+- [YouTube](https://supermetrics.com/connectors/youtube): Supermetrics connects to YouTube channels to pull video performance data, subscriber analytics, and long-form content engagement metrics
+- [Instagram Public Data](https://supermetrics.com/connectors/instagram-public-data): Supermetrics extracts publicly available Instagram data for competitive analysis and social media benchmarking
+- [Facebook Public Data](https://supermetrics.com/connectors/facebook-public-data): Supermetrics pulls publicly available Facebook data for social media competitive intelligence and market research
+- [YouTube Public Data](https://supermetrics.com/connectors/youtube-public-data): Supermetrics extracts publicly available YouTube data for video content competitive analysis and market trends
+
+## Web Analytics Connectors
+- [Google Analytics 4](https://supermetrics.com/connectors/google-analytics-4): Supermetrics extracts GA4 data with 89 metrics and 212 dimensions including sessions, users, conversions, and enhanced e-commerce tracking for comprehensive website analytics
+- [Adobe Analytics](https://supermetrics.com/connectors/adobe-analytics): Supermetrics connects to Adobe Analytics to pull enterprise web analytics data, visitor behavior metrics, and advanced segmentation analysis using 132 metrics and 255 dimensions
+- [Matomo](https://supermetrics.com/connectors/matomo): Supermetrics extracts Matomo web analytics data, delivering 194 metrics and 359 dimensions, providing privacy-focused website performance metrics and visitor behavior analysis
+- [Google Search Console](https://supermetrics.com/connectors/google-search-console): Supermetrics pulls Google Search Console data including search performance, keyword rankings, and organic search visibility metrics using 13 metrics and 61 dimensions
+- [Google Trends](https://supermetrics.com/connectors/google-trends): Supermetrics extracts Google Trends data for search volume analysis, seasonal trends, and market research insights using 1 metric and 50 dimensions
+
+## SEO & Content Marketing Connectors
+- [Ahrefs](https://supermetrics.com/connectors/ahrefs): Supermetrics connects to Ahrefs to extract SEO data including keyword rankings, backlink analysis, and competitive search intelligence
+- [Moz](https://supermetrics.com/connectors/moz): Supermetrics pulls Moz SEO data including domain authority, keyword difficulty, and search engine optimization metrics
+- [SEMrush Analytics](https://supermetrics.com/connectors/semrush-analytics): Supermetrics extracts SEMrush competitive intelligence data including keyword research, competitor analysis, and digital marketing insights
+- [SEMrush Projects](https://supermetrics.com/connectors/semrush-projects): Supermetrics connects to SEMrush project data for tracking SEO campaign performance and keyword position monitoring
+
+## E-commerce Platform Connectors
+- [Shopify](https://supermetrics.com/connectors/shopify): Supermetrics extracts Shopify store data with 16 metrics and 95 dimensions including sales, returns, product details, and e-commerce performance analytics
+- [WooCommerce](https://supermetrics.com/connectors/woocommerce): Supermetrics connects to WooCommerce stores to pull WordPress e-commerce data including order analytics and product performance metrics
+- [Lazada](https://supermetrics.com/connectors/lazada): Supermetrics extracts Lazada marketplace data for Southeast Asian e-commerce performance tracking and seller analytics
+
+## Email Marketing Connectors
+- [MailChimp](https://supermetrics.com/connectors/mailchimp): Supermetrics pulls MailChimp email campaign data including open rates, click-through rates, and email marketing performance metrics
+- [Klaviyo](https://supermetrics.com/connectors/klaviyo): Supermetrics extracts Klaviyo email and SMS marketing data for e-commerce-focused email campaign analytics and customer lifecycle tracking using 82 metrics and 108 dimensions.
+- [ActiveCampaign](https://supermetrics.com/connectors/activecampaign): Supermetrics connects to ActiveCampaign to pull 28 metrics and 120 dimensions to gather email automation data, contact segmentation metrics, and marketing automation performance
+- [Omnisend](https://supermetrics.com/connectors/omnisend): Supermetrics extracts Omnisend omnichannel marketing data, delivering 35 metrics and 56 dimensions for email, SMS, and push notification campaign performance
+
+## CRM & Marketing Automation Connectors
+- [Salesforce](https://supermetrics.com/connectors/salesforce): Supermetrics connects to Salesforce CRM to extract lead data, opportunity tracking, and sales pipeline metrics for marketing attribution analysis using 249 metrics and 459 dimensions
+- [Pardot](https://supermetrics.com/connectors/pardot): Supermetrics pulls Pardot B2B marketing automation data including lead scoring, nurturing campaigns, and marketing-qualified lead metrics using 32 metrics and 159 dimensions.
+- [HubSpot](https://supermetrics.com/connectors/hubspot): Supermetrics extracts HubSpot data with 174 metrics and 391 dimensions including CRM data, marketing automation performance, and inbound marketing analytics
+- [Marketo](https://supermetrics.com/connectors/marketo): Supermetrics connects to Marketo to pull marketing automation data, lead lifecycle tracking, and B2B marketing campaign performance using 28 metrics and 158 dimensions
+
+## Google Marketing Platform Connectors
+- [Google Search Ads 360](https://supermetrics.com/connectors/google-search-ads-360): Supermetrics extracts Search Ads 360 data with 24 metrics and 129 dimensions for enterprise-level search marketing campaign management and cross-engine performance analysis
+- [Google My Business](https://supermetrics.com/connectors/google-my-business): Supermetrics pulls Google My Business data including local search performance, customer reviews, and local SEO metrics
+- [Facebook Billing Data](https://supermetrics.com/connectors/facebook-business-manager): Supermetrics connects to your Facebook Billing business account for enterprise-level social media advertising account management and performance tracking using 10 metrics and 33 dimensions
+
+## Specialized Connectors
+- [LinkedIn Revenue Attribution](https://supermetrics.com/connectors/linkedin-revenue-attribution): Supermetrics extracts LinkedIn's advanced B2B attribution data connecting social media campaigns to revenue outcomes and sales pipeline influence
+- [CJ Affiliate](https://supermetrics.com/connectors/cj-affiliate): Supermetrics pulls Commission Junction affiliate marketing data including partner performance, commission tracking, and affiliate program analytics
+- [IQM](https://supermetrics.com/connectors/iqm): Supermetrics connects to IQM programmatic advertising platform for automated media buying performance and digital advertising campaign data
+
+## AI Integrations
+- [Supermetrics for Claude](https://supermetrics.com/connect): Supermetrics is available as a native Claude connector, enabling users to query 170+ marketing data sources using natural language directly in Claude. One-click setup, no MCP configuration required.
+- [Connect Facebook Ads to Claude](https://supermetrics.com/connect/facebook-ads-to-claude): Connect Facebook Ads (Meta Ads) to Claude via Supermetrics to analyze campaigns, ad sets, ROAS, CPA, creative performance, and audience insights with AI
+- [Connect Google Ads to Claude](https://supermetrics.com/connect/google-ads-to-claude): Connect Google Ads to Claude via Supermetrics to analyze keyword performance, Quality Scores, search terms, campaign efficiency, and budget optimization with AI
+- [Connect LinkedIn Ads to Claude](https://supermetrics.com/connect/linkedin-ads-to-claude): Connect LinkedIn Ads to Claude via Supermetrics to analyze B2B campaign performance, lead gen forms, professional demographic targeting, and pipeline impact with AI
+- [Connect TikTok Ads to Claude](https://supermetrics.com/connect/tiktok-ads-to-claude): Connect TikTok Ads to Claude via Supermetrics to analyze video creative performance, audience engagement, and ad spend efficiency with AI
+- [Connect Google Analytics 4 to Claude](https://supermetrics.com/connect/ga4-to-claude): Connect GA4 to Claude via Supermetrics to analyze traffic patterns, conversion funnels, user behavior, and content performance with AI
+- [Connect HubSpot to Claude](https://supermetrics.com/connect/hubspot-to-claude): Connect HubSpot to Claude via Supermetrics to analyze pipeline health, deal velocity, email campaigns, and marketing-to-sales alignment with AI
+- [Connect Shopify to Claude](https://supermetrics.com/connect/shopify-to-claude): Connect Shopify to Claude via Supermetrics to analyze product performance, customer lifetime value, revenue trends, and marketing attribution with AI
+- [Connect Microsoft Ads to Claude](https://supermetrics.com/connect/microsoft-ads-to-claude): Connect Microsoft Ads (Bing Ads) to Claude via Supermetrics to analyze search performance, audience targeting, and cross-engine budget optimization with AI
+- [Connect Instagram to Claude](https://supermetrics.com/connect/instagram-to-claude): Connect Instagram to Claude via Supermetrics to analyze content engagement, Reels performance, follower growth, and posting optimization with AI
+- [Connect Salesforce to Claude](https://supermetrics.com/connect/salesforce-to-claude): Connect Salesforce to Claude via Supermetrics to analyze pipeline health, win rates, forecast accuracy, and sales team performance with AI
+- [Connect YouTube to Claude](https://supermetrics.com/connect/youtube-to-claude): Connect YouTube to Claude via Supermetrics to analyze video performance, audience retention, traffic sources, and subscriber growth with AI
+- [Connect Google Search Console to Claude](https://supermetrics.com/connect/google-search-console-to-claude): Connect Google Search Console to Claude via Supermetrics to analyze keyword rankings, CTR optimization, and technical SEO with AI
+- [Connect Pinterest Ads to Claude](https://supermetrics.com/connect/pinterest-ads-to-claude): Connect Pinterest Ads to Claude via Supermetrics to analyze pin performance, save rates, and visual marketing ROI with AI
+- [Connect Snapchat Ads to Claude](https://supermetrics.com/connect/snapchat-ads-to-claude): Connect Snapchat Ads to Claude via Supermetrics to analyze ad creative performance, video completion rates, and Gen Z audience engagement with AI
+- [Connect X Ads to Claude](https://supermetrics.com/connect/twitter-ads-to-claude): Connect X (Twitter) Ads to Claude via Supermetrics to analyze promoted tweet engagement, audience targeting, and social ad performance with AI
+- [Connect Mailchimp to Claude](https://supermetrics.com/connect/mailchimp-to-claude): Connect Mailchimp to Claude via Supermetrics to analyze email campaign open rates, click rates, subscriber health, and automation performance with AI
+- [Connect Klaviyo to Claude](https://supermetrics.com/connect/klaviyo-to-claude): Connect Klaviyo to Claude via Supermetrics to analyze email and SMS flow revenue, segment engagement, and e-commerce lifecycle metrics with AI
+- [Connect Amazon Ads to Claude](https://supermetrics.com/connect/amazon-ads-to-claude): Connect Amazon Ads to Claude via Supermetrics to analyze Sponsored Products, ACoS optimization, search term mining, and product-level ad performance with AI
+- [Connect Apple Search Ads to Claude](https://supermetrics.com/connect/apple-search-ads-to-claude): Connect Apple Search Ads to Claude via Supermetrics to analyze keyword-level app install performance, tap-through rates, and customer acquisition costs with AI
+- [Connect DV360 to Claude](https://supermetrics.com/connect/dv360-to-claude): Connect Display and Video 360 to Claude via Supermetrics to analyze programmatic display, video, CTV performance, and viewability metrics with AI
+- [Connect Outbrain Amplify to Claude](https://supermetrics.com/connect/outbrain-to-claude): Connect Outbrain Amplify to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Google Ad Manager to Claude](https://supermetrics.com/connect/google-ad-manager-to-claude): Connect Google Ad Manager to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Google Search Ads 360 to Claude](https://supermetrics.com/connect/search-ads-360-to-claude): Connect Google Search Ads 360 to Claude via Supermetrics to analyze campaign performance with AI
+- [Connect The Trade Desk to Claude](https://supermetrics.com/connect/the-trade-desk-to-claude): Connect The Trade Desk to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Adform to Claude](https://supermetrics.com/connect/adform-to-claude): Connect Adform to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Adjust to Claude](https://supermetrics.com/connect/adjust-to-claude): Connect Adjust to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Spotify Ads to Claude](https://supermetrics.com/connect/spotify-ads-to-claude): Connect Spotify Ads to Claude via Supermetrics to analyze campaign performance with AI
+- [Connect RTB House to Claude](https://supermetrics.com/connect/rtb-house-to-claude): Connect RTB House to Claude via Supermetrics to analyze marketing data with AI
+- [Connect CallRail to Claude](https://supermetrics.com/connect/callrail-to-claude): Connect CallRail to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Amazon DSP to Claude](https://supermetrics.com/connect/amazon-dsp-to-claude): Connect Amazon DSP to Claude via Supermetrics to analyze marketing data with AI
+- [Connect AppsFlyer to Claude](https://supermetrics.com/connect/appsflyer-to-claude): Connect AppsFlyer to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Awin to Claude](https://supermetrics.com/connect/awin-to-claude): Connect Awin to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Matomo to Claude](https://supermetrics.com/connect/matomo-to-claude): Connect Matomo to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Stripe to Claude](https://supermetrics.com/connect/stripe-to-claude): Connect Stripe to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Yahoo DSP to Claude](https://supermetrics.com/connect/yahoo-dsp-to-claude): Connect Yahoo DSP to Claude via Supermetrics to analyze marketing data with AI
+- [Connect WooCommerce to Claude](https://supermetrics.com/connect/woocommerce-to-claude): Connect WooCommerce to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Piwik PRO to Claude](https://supermetrics.com/connect/piwik-pro-to-claude): Connect Piwik PRO to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Semrush Analytics to Claude](https://supermetrics.com/connect/semrush-to-claude): Connect Semrush Analytics to Claude via Supermetrics to analyze website analytics with AI
+- [Connect LINE Ads to Claude](https://supermetrics.com/connect/line-ads-to-claude): Connect LINE Ads to Claude via Supermetrics to analyze campaign performance with AI
+- [Connect Google AdSense to Claude](https://supermetrics.com/connect/google-adsense-to-claude): Connect Google AdSense to Claude via Supermetrics to analyze marketing data with AI
+- [Connect ActiveCampaign to Claude](https://supermetrics.com/connect/activecampaign-to-claude): Connect ActiveCampaign to Claude via Supermetrics to analyze marketing data with AI
+- [Connect AdRoll to Claude](https://supermetrics.com/connect/adroll-to-claude): Connect AdRoll to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Amazon Seller Central to Claude](https://supermetrics.com/connect/amazon-seller-central-to-claude): Connect Amazon Seller Central to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Quora Ads to Claude](https://supermetrics.com/connect/quora-ads-to-claude): Connect Quora Ads to Claude via Supermetrics to analyze campaign performance with AI
+- [Connect Teads to Claude](https://supermetrics.com/connect/teads-to-claude): Connect Teads to Claude via Supermetrics to analyze marketing data with AI
+- [Connect X (Twitter) Organic to Claude](https://supermetrics.com/connect/twitter-organic-to-claude): Connect X (Twitter) Organic to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Yandex.Direct to Claude](https://supermetrics.com/connect/yandex-direct-to-claude): Connect Yandex.Direct to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Impact to Claude](https://supermetrics.com/connect/impact-to-claude): Connect Impact to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Adtraction to Claude](https://supermetrics.com/connect/adtraction-to-claude): Connect Adtraction to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Sprout Social to Claude](https://supermetrics.com/connect/sprout-social-to-claude): Connect Sprout Social to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Bing Webmaster Tools to Claude](https://supermetrics.com/connect/bing-webmaster-tools-to-claude): Connect Bing Webmaster Tools to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Piano Analytics to Claude](https://supermetrics.com/connect/piano-analytics-to-claude): Connect Piano Analytics to Claude via Supermetrics to analyze website analytics with AI
+- [Connect CJ Affiliate to Claude](https://supermetrics.com/connect/cj-affiliate-to-claude): Connect CJ Affiliate to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Pinterest Organic to Claude](https://supermetrics.com/connect/pinterest-organic-to-claude): Connect Pinterest Organic to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Google Trends to Claude](https://supermetrics.com/connect/google-trends-to-claude): Connect Google Trends to Claude via Supermetrics to analyze marketing data with AI
+- [Connect DoubleVerify to Claude](https://supermetrics.com/connect/doubleverify-to-claude): Connect DoubleVerify to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Omnisend to Claude](https://supermetrics.com/connect/omnisend-to-claude): Connect Omnisend to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Kwai Ads to Claude](https://supermetrics.com/connect/kwai-ads-to-claude): Connect Kwai Ads to Claude via Supermetrics to analyze campaign performance with AI
+- [Connect Marketo to Claude](https://supermetrics.com/connect/marketo-to-claude): Connect Marketo to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Brevo to Claude](https://supermetrics.com/connect/brevo-to-claude): Connect Brevo to Claude via Supermetrics to analyze marketing data with AI
+- [Connect Facebook Insights to Claude](https://supermetrics.com/connect/facebook-insights-to-claude): Connect Facebook Insights to Claude via Supermetrics to analyze organic page reach, post engagement, audience demographics, and page views with AI
+- [Connect Adobe Analytics to Claude](https://supermetrics.com/connect/adobe-analytics-to-claude): Connect Adobe Analytics 2.0 to Claude via Supermetrics to analyze enterprise web analytics with segments, calculated metrics, and classification data with AI
+- [Connect Campaign Manager 360 to Claude](https://supermetrics.com/connect/campaign-manager-360-to-claude): Connect Google Campaign Manager 360 to Claude via Supermetrics to analyze ad serving, Floodlight conversions, viewability, and reach & frequency with AI
+- [Connect Google My Business to Claude](https://supermetrics.com/connect/google-my-business-to-claude): Connect Google My Business to Claude via Supermetrics to analyze local search visibility, customer actions, reviews, and multi-location performance with AI
+- [Connect LinkedIn Company Pages to Claude](https://supermetrics.com/connect/linkedin-pages-to-claude): Connect LinkedIn Company Pages to Claude via Supermetrics to analyze B2B organic page performance, follower demographics, and post engagement with AI
+- [Connect Taboola to Claude](https://supermetrics.com/connect/taboola-to-claude): Connect Taboola to Claude via Supermetrics to analyze native content discovery campaigns, CPC optimization, and publisher-level performance with AI
+- [Connect Reddit Ads to Claude](https://supermetrics.com/connect/reddit-ads-to-claude): Connect Reddit Ads to Claude via Supermetrics to analyze subreddit targeting, community engagement, and conversion attribution with AI
+- [Connect StackAdapt to Claude](https://supermetrics.com/connect/stackadapt-to-claude): Connect StackAdapt to Claude via Supermetrics to analyze multi-channel programmatic performance across native, display, video, CTV, and audio with AI
+- [Connect TikTok Organic to Claude](https://supermetrics.com/connect/tiktok-organic-to-claude): Connect TikTok Organic to Claude via Supermetrics to analyze video performance, follower growth, completion rates, and trending content with AI
+- [Connect Criteo to Claude](https://supermetrics.com/connect/criteo-to-claude): Connect Criteo to Claude via Supermetrics to analyze retargeting performance, commerce media spend, product-level ROAS, and conversion attribution with AI
+- [Supermetrics for ChatGPT](https://supermetrics.com/connect): Supermetrics is available as a native ChatGPT app, enabling users to query 170+ marketing data sources using natural language directly in ChatGPT. One-click setup, no configuration required.
+- [Connect Facebook Ads to ChatGPT](https://supermetrics.com/connect/facebook-ads-to-chatgpt): Connect Facebook Ads (Meta Ads) to ChatGPT via Supermetrics to analyze campaigns, ad sets, ROAS, CPA, creative performance, and audience insights with AI
+- [Connect Google Ads to ChatGPT](https://supermetrics.com/connect/google-ads-to-chatgpt): Connect Google Ads to ChatGPT via Supermetrics to analyze keyword performance, Quality Scores, search terms, campaign efficiency, and budget optimization with AI
+- [Connect LinkedIn Ads to ChatGPT](https://supermetrics.com/connect/linkedin-ads-to-chatgpt): Connect LinkedIn Ads to ChatGPT via Supermetrics to analyze B2B campaign performance, lead gen forms, professional demographic targeting, and pipeline impact with AI
+- [Connect TikTok Ads to ChatGPT](https://supermetrics.com/connect/tiktok-ads-to-chatgpt): Connect TikTok Ads to ChatGPT via Supermetrics to analyze video creative performance, audience engagement, and ad spend efficiency with AI
+- [Connect Google Analytics 4 to ChatGPT](https://supermetrics.com/connect/ga4-to-chatgpt): Connect GA4 to ChatGPT via Supermetrics to analyze traffic patterns, conversion funnels, user behavior, and content performance with AI
+- [Connect HubSpot to ChatGPT](https://supermetrics.com/connect/hubspot-to-chatgpt): Connect HubSpot to ChatGPT via Supermetrics to analyze pipeline health, deal velocity, email campaigns, and marketing-to-sales alignment with AI
+- [Connect Shopify to ChatGPT](https://supermetrics.com/connect/shopify-to-chatgpt): Connect Shopify to ChatGPT via Supermetrics to analyze product performance, customer lifetime value, revenue trends, and marketing attribution with AI
+- [Connect Microsoft Ads to ChatGPT](https://supermetrics.com/connect/microsoft-ads-to-chatgpt): Connect Microsoft Ads (Bing Ads) to ChatGPT via Supermetrics to analyze search performance, audience targeting, and cross-engine budget optimization with AI
+- [Connect Instagram to ChatGPT](https://supermetrics.com/connect/instagram-to-chatgpt): Connect Instagram to ChatGPT via Supermetrics to analyze content engagement, Reels performance, follower growth, and posting optimization with AI
+- [Connect Salesforce to ChatGPT](https://supermetrics.com/connect/salesforce-to-chatgpt): Connect Salesforce to ChatGPT via Supermetrics to analyze pipeline health, win rates, forecast accuracy, and sales team performance with AI
+- [Connect YouTube to ChatGPT](https://supermetrics.com/connect/youtube-to-chatgpt): Connect YouTube to ChatGPT via Supermetrics to analyze video performance, audience retention, traffic sources, and subscriber growth with AI
+- [Connect Google Search Console to ChatGPT](https://supermetrics.com/connect/google-search-console-to-chatgpt): Connect Google Search Console to ChatGPT via Supermetrics to analyze keyword rankings, CTR optimization, and technical SEO with AI
+- [Connect Amazon Ads to ChatGPT](https://supermetrics.com/connect/amazon-ads-to-chatgpt): Connect Amazon Ads to ChatGPT via Supermetrics to analyze Sponsored Products, ACoS optimization, search term mining, and product-level ad performance with AI
+- [Connect Mailchimp to ChatGPT](https://supermetrics.com/connect/mailchimp-to-chatgpt): Connect Mailchimp to ChatGPT via Supermetrics to analyze email campaign open rates, click rates, subscriber health, and automation performance with AI
+- [Connect Klaviyo to ChatGPT](https://supermetrics.com/connect/klaviyo-to-chatgpt): Connect Klaviyo to ChatGPT via Supermetrics to analyze email and SMS flow revenue, segment engagement, and e-commerce lifecycle metrics with AI
+- [Connect Pinterest Ads to ChatGPT](https://supermetrics.com/connect/pinterest-ads-to-chatgpt): Connect Pinterest Ads to ChatGPT via Supermetrics to analyze campaign performance with AI
+- [Connect Snapchat Ads to ChatGPT](https://supermetrics.com/connect/snapchat-ads-to-chatgpt): Connect Snapchat Ads to ChatGPT via Supermetrics to analyze campaign performance with AI
+- [Connect X (Twitter) Ads to ChatGPT](https://supermetrics.com/connect/twitter-ads-to-chatgpt): Connect X (Twitter) Ads to ChatGPT via Supermetrics to analyze campaign performance with AI
+- [Connect Apple Search Ads to ChatGPT](https://supermetrics.com/connect/apple-search-ads-to-chatgpt): Connect Apple Search Ads to ChatGPT via Supermetrics to analyze campaign performance with AI
+- [Connect Display & Video 360 to ChatGPT](https://supermetrics.com/connect/dv360-to-chatgpt): Connect Display & Video 360 to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Outbrain Amplify to ChatGPT](https://supermetrics.com/connect/outbrain-to-chatgpt): Connect Outbrain Amplify to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Google Ad Manager to ChatGPT](https://supermetrics.com/connect/google-ad-manager-to-chatgpt): Connect Google Ad Manager to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Google Search Ads 360 to ChatGPT](https://supermetrics.com/connect/search-ads-360-to-chatgpt): Connect Google Search Ads 360 to ChatGPT via Supermetrics to analyze campaign performance with AI
+- [Connect The Trade Desk to ChatGPT](https://supermetrics.com/connect/the-trade-desk-to-chatgpt): Connect The Trade Desk to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Adform to ChatGPT](https://supermetrics.com/connect/adform-to-chatgpt): Connect Adform to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Adjust to ChatGPT](https://supermetrics.com/connect/adjust-to-chatgpt): Connect Adjust to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Spotify Ads to ChatGPT](https://supermetrics.com/connect/spotify-ads-to-chatgpt): Connect Spotify Ads to ChatGPT via Supermetrics to analyze campaign performance with AI
+- [Connect RTB House to ChatGPT](https://supermetrics.com/connect/rtb-house-to-chatgpt): Connect RTB House to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect CallRail to ChatGPT](https://supermetrics.com/connect/callrail-to-chatgpt): Connect CallRail to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Amazon DSP to ChatGPT](https://supermetrics.com/connect/amazon-dsp-to-chatgpt): Connect Amazon DSP to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect AppsFlyer to ChatGPT](https://supermetrics.com/connect/appsflyer-to-chatgpt): Connect AppsFlyer to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Awin to ChatGPT](https://supermetrics.com/connect/awin-to-chatgpt): Connect Awin to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Matomo to ChatGPT](https://supermetrics.com/connect/matomo-to-chatgpt): Connect Matomo to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Stripe to ChatGPT](https://supermetrics.com/connect/stripe-to-chatgpt): Connect Stripe to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Yahoo DSP to ChatGPT](https://supermetrics.com/connect/yahoo-dsp-to-chatgpt): Connect Yahoo DSP to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect WooCommerce to ChatGPT](https://supermetrics.com/connect/woocommerce-to-chatgpt): Connect WooCommerce to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Piwik PRO to ChatGPT](https://supermetrics.com/connect/piwik-pro-to-chatgpt): Connect Piwik PRO to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Semrush Analytics to ChatGPT](https://supermetrics.com/connect/semrush-to-chatgpt): Connect Semrush Analytics to ChatGPT via Supermetrics to analyze website analytics with AI
+- [Connect LINE Ads to ChatGPT](https://supermetrics.com/connect/line-ads-to-chatgpt): Connect LINE Ads to ChatGPT via Supermetrics to analyze campaign performance with AI
+- [Connect Google AdSense to ChatGPT](https://supermetrics.com/connect/google-adsense-to-chatgpt): Connect Google AdSense to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect ActiveCampaign to ChatGPT](https://supermetrics.com/connect/activecampaign-to-chatgpt): Connect ActiveCampaign to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect AdRoll to ChatGPT](https://supermetrics.com/connect/adroll-to-chatgpt): Connect AdRoll to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Amazon Seller Central to ChatGPT](https://supermetrics.com/connect/amazon-seller-central-to-chatgpt): Connect Amazon Seller Central to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Quora Ads to ChatGPT](https://supermetrics.com/connect/quora-ads-to-chatgpt): Connect Quora Ads to ChatGPT via Supermetrics to analyze campaign performance with AI
+- [Connect Teads to ChatGPT](https://supermetrics.com/connect/teads-to-chatgpt): Connect Teads to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect X (Twitter) Organic to ChatGPT](https://supermetrics.com/connect/twitter-organic-to-chatgpt): Connect X (Twitter) Organic to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Yandex.Direct to ChatGPT](https://supermetrics.com/connect/yandex-direct-to-chatgpt): Connect Yandex.Direct to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Impact to ChatGPT](https://supermetrics.com/connect/impact-to-chatgpt): Connect Impact to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Adtraction to ChatGPT](https://supermetrics.com/connect/adtraction-to-chatgpt): Connect Adtraction to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Sprout Social to ChatGPT](https://supermetrics.com/connect/sprout-social-to-chatgpt): Connect Sprout Social to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Bing Webmaster Tools to ChatGPT](https://supermetrics.com/connect/bing-webmaster-tools-to-chatgpt): Connect Bing Webmaster Tools to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Piano Analytics to ChatGPT](https://supermetrics.com/connect/piano-analytics-to-chatgpt): Connect Piano Analytics to ChatGPT via Supermetrics to analyze website analytics with AI
+- [Connect CJ Affiliate to ChatGPT](https://supermetrics.com/connect/cj-affiliate-to-chatgpt): Connect CJ Affiliate to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Pinterest Organic to ChatGPT](https://supermetrics.com/connect/pinterest-organic-to-chatgpt): Connect Pinterest Organic to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Google Trends to ChatGPT](https://supermetrics.com/connect/google-trends-to-chatgpt): Connect Google Trends to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect DoubleVerify to ChatGPT](https://supermetrics.com/connect/doubleverify-to-chatgpt): Connect DoubleVerify to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Omnisend to ChatGPT](https://supermetrics.com/connect/omnisend-to-chatgpt): Connect Omnisend to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Kwai Ads to ChatGPT](https://supermetrics.com/connect/kwai-ads-to-chatgpt): Connect Kwai Ads to ChatGPT via Supermetrics to analyze campaign performance with AI
+- [Connect Marketo to ChatGPT](https://supermetrics.com/connect/marketo-to-chatgpt): Connect Marketo to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Brevo to ChatGPT](https://supermetrics.com/connect/brevo-to-chatgpt): Connect Brevo to ChatGPT via Supermetrics to analyze marketing data with AI
+- [Connect Facebook Insights to ChatGPT](https://supermetrics.com/connect/facebook-insights-to-chatgpt): Connect Facebook Insights to ChatGPT via Supermetrics to analyze organic page reach, post engagement, audience demographics, and page views with AI
+- [Connect Adobe Analytics to ChatGPT](https://supermetrics.com/connect/adobe-analytics-to-chatgpt): Connect Adobe Analytics 2.0 to ChatGPT via Supermetrics to analyze enterprise web analytics with segments, calculated metrics, and classification data with AI
+- [Connect Campaign Manager 360 to ChatGPT](https://supermetrics.com/connect/campaign-manager-360-to-chatgpt): Connect Google Campaign Manager 360 to ChatGPT via Supermetrics to analyze ad serving, Floodlight conversions, viewability, and reach & frequency with AI
+- [Connect Google My Business to ChatGPT](https://supermetrics.com/connect/google-my-business-to-chatgpt): Connect Google My Business to ChatGPT via Supermetrics to analyze local search visibility, customer actions, reviews, and multi-location performance with AI
+- [Connect LinkedIn Company Pages to ChatGPT](https://supermetrics.com/connect/linkedin-pages-to-chatgpt): Connect LinkedIn Company Pages to ChatGPT via Supermetrics to analyze B2B organic page performance, follower demographics, and post engagement with AI
+- [Connect Taboola to ChatGPT](https://supermetrics.com/connect/taboola-to-chatgpt): Connect Taboola to ChatGPT via Supermetrics to analyze native content discovery campaigns, CPC optimization, and publisher-level performance with AI
+- [Connect Reddit Ads to ChatGPT](https://supermetrics.com/connect/reddit-ads-to-chatgpt): Connect Reddit Ads to ChatGPT via Supermetrics to analyze subreddit targeting, community engagement, and conversion attribution with AI
+- [Connect StackAdapt to ChatGPT](https://supermetrics.com/connect/stackadapt-to-chatgpt): Connect StackAdapt to ChatGPT via Supermetrics to analyze multi-channel programmatic performance across native, display, video, CTV, and audio with AI
+- [Connect TikTok Organic to ChatGPT](https://supermetrics.com/connect/tiktok-organic-to-chatgpt): Connect TikTok Organic to ChatGPT via Supermetrics to analyze video performance, follower growth, completion rates, and trending content with AI
+- [Connect Criteo to ChatGPT](https://supermetrics.com/connect/criteo-to-chatgpt): Connect Criteo to ChatGPT via Supermetrics to analyze retargeting performance, commerce media spend, product-level ROAS, and conversion attribution with AI
+
+
+## Destination-Specific Connector Pages
+
+Supermetrics connects 170+ marketing data sources to every major reporting, analytics, and data destination. Each destination has a hub page listing available connectors and individual pages for each connector+destination combination.
+
+### Spreadsheet Destinations
+- [Connect to Google Sheets](https://supermetrics.com/connect/google-sheets): Hub page listing all data sources available for Google Sheets. Supermetrics add-on pulls data directly into cells with scheduled refreshes, email delivery, and data blending across 170+ sources.
+- [Connect to Excel](https://supermetrics.com/connect/excel): Hub page listing all data sources available for Microsoft Excel. Desktop add-in with pivot table support, Power Query integration, and scheduled refreshes.
+- [Connect Facebook Ads to Google Sheets](https://supermetrics.com/connect/facebook-ads-to-google-sheets): Pull Facebook Ads campaign data into Google Sheets with automated refreshes. Pre-built report templates for budget pacing, creative performance, and audience analysis.
+- [Connect Google Ads to Google Sheets](https://supermetrics.com/connect/google-ads-to-google-sheets): Pull Google Ads keyword and campaign data into Google Sheets with Quality Score tracking, budget pacing, and cross-channel comparison.
+
+### Dashboard & BI Destinations
+- [Connect to Google Data Studio](https://supermetrics.com/connect/looker-studio): Hub page listing all data sources available for Google Data Studio (formerly Looker Studio). Live dashboards with data blending and pre-built templates.
+- [Connect to Power BI](https://supermetrics.com/connect/power-bi): Hub page listing all data sources available for Power BI. DAX measures, drill-through reports, and Power BI Service distribution.
+- [Connect Facebook Ads to Google Data Studio](https://supermetrics.com/connect/facebook-ads-to-looker-studio): Build live Facebook Ads dashboards in Google Data Studio with automated data refresh and pre-built templates.
+- [Connect Facebook Ads to Power BI](https://supermetrics.com/connect/facebook-ads-to-power-bi): Build Facebook Ads dashboards in Power BI with DAX measures, drill-through pages, and enterprise sharing.
+
+### Data Warehouse Destinations
+- [Connect to BigQuery](https://supermetrics.com/connect/bigquery): Hub page listing all data sources available for BigQuery. Pre-aggregated tables ready for SQL, lower query costs than native exports.
+- [Connect to Snowflake](https://supermetrics.com/connect/snowflake): Hub page listing all data sources for Snowflake. Time travel, zero-copy cloning, and Marketplace data enrichment.
+- [Connect to Amazon Redshift](https://supermetrics.com/connect/amazon-redshift): Hub page listing all data sources for Amazon Redshift. AWS ecosystem integration with Spectrum and S3.
+- [Connect Facebook Ads to BigQuery](https://supermetrics.com/connect/facebook-ads-to-bigquery): Warehouse Facebook Ads data in BigQuery with pre-aggregated tables. 90%+ lower query costs vs native Data Transfer Service.
+- [Connect GA4 to BigQuery](https://supermetrics.com/connect/ga4-to-bigquery): Aggregated GA4 data in BigQuery — query-ready sessions and conversions without expensive raw event table processing.
+
+### Data Lake Destinations
+- [Connect to Amazon S3](https://supermetrics.com/connect/amazon-s3): Hub page listing all data sources for Amazon S3. CSV, JSON, and Parquet file delivery with Lambda and Athena integration.
+- [Connect to Microsoft Fabric](https://supermetrics.com/connect/microsoft-fabric): Hub page listing all data sources for Microsoft Fabric. OneLake, Delta Lake, and Power BI DirectLake integration.
+
+### Automation Destinations
+- [Connect to n8n](https://supermetrics.com/connect/n8n): Hub page listing all data sources for n8n workflow automation. Built-in verified node for budget alerts, performance monitoring, and automated reports.
+- [Connect Facebook Ads to n8n](https://supermetrics.com/connect/facebook-ads-to-n8n): Automate Facebook Ads monitoring with n8n workflows. CPA alerts, budget pacing, and scheduled Slack reports.
+
+### AI Agent Destinations
+- [Connect to Microsoft Copilot](https://supermetrics.com/connect/microsoft-copilot): Hub page listing all data sources for Microsoft Copilot. Query marketing data in natural language directly in Teams.
+- [Connect to Google Gemini Enterprise](https://supermetrics.com/connect/gemini-enterprise): Hub page listing all data sources for Google Gemini Enterprise. AI-powered campaign analysis with write access for campaign management.
+
+### Category Hub Pages
+- [Connect to Spreadsheets](https://supermetrics.com/connect/spreadsheets): Overview of spreadsheet destinations (Google Sheets and Excel) with links to all available connectors.
+- [Connect to Dashboards & BI](https://supermetrics.com/connect/dashboards): Overview of dashboard destinations (Google Data Studio and Power BI) with links to all available connectors.
+- [Connect to Data Warehouses](https://supermetrics.com/connect/data-warehouses): Overview of data warehouse destinations (BigQuery, Snowflake, Redshift, Azure Synapse, and more).
+- [Connect to Data Lakes](https://supermetrics.com/connect/data-lakes): Overview of data lake destinations (Amazon S3, Azure Storage, Google Cloud Storage, Microsoft Fabric, SFTP).
+- [Connect to Automation](https://supermetrics.com/connect/automation): Overview of automation destinations (n8n) with workflow examples.

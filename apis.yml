@@ -36,7 +36,7 @@ accessModel:
     Starter and Growth are self-serve list-price packages; Data API access is sold as an
     extra on both. Management API access is Enterprise-only (quote). See
     plans/supermetrics-plans-pricing.yml.
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-08-13'
 image: https://supermetrics.com/favicon.ico

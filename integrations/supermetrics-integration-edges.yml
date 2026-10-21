@@ -1,21 +1,34 @@
 edges:
-- partner_name: Stripe (own)
-  partner: stripe
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.stripe.com/apps/supermetrics
-  mirror_of: stripe/integrations/stripe-integration-edges.yml
-  apps:
-  - Supermetrics
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: data_and_analytics
+- partner_name: PyPI
+  partner: pypi
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (Python)
+  evidence: https://pypi.org/project/supermetrics/
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: supermetrics
+      version: 0.5.1
+      released: '2026-08-20'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/supermetrics/
+      repo_leg: github-org:supermetrics-public
+      publisher_leg: email:supermetrics.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-18'
 - partner_name: MCP Registry
   partner: mcp
   partner_match: register
@@ -31,7 +44,7 @@ edges:
     registered_name: com.supermetrics/supermetrics
     register_id: com.supermetrics/supermetrics
     detected_by: sweep-agent-tools.py
-    detected: '2026-10-15'
+    detected: '2026-10-19'
   mcp_registry:
     servers:
     - com.supermetrics/supermetrics
@@ -47,6 +60,39 @@ edges:
   - namespace-domain
   detected_by: sweep-agent-tools.py
   first_seen: '2026-10-14'
+- partner_name: HubSpot App Certification
+  partner: hubspot
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://ecosystem.hubspot.com/marketplace/explore?eco_PRODUCT_TYPE=APP&eco_CERTIFIED=true
+  category: HubSpot certified app publisher
+  contract_reference:
+    register: HubSpot App Marketplace Certified Apps (CERTIFIED filter on the storefront's public search JSON)
+    standard: HubSpot App Certification
+    spec_file: null
+    role: certified-app-publisher
+    registered_name: Supermetrics
+    matched_domain: supermetrics.com
+    matched_by: domain
+    identity_source: the listing's own companyUrl (no lookup)
+    certified_products:
+    - product: HubSpot Certified App
+      product_type: APP
+      certifier: HubSpot (App Certification)
+      listings: 1
+      example_listing: https://ecosystem.hubspot.com/marketplace/listing/supermetrics
+      lapsed: false
+      lapsed_note: the certified flag is printed on a LIVE public listing card (CERTIFIED filter); HubSpot prints
+        no certification date, so the badge reads as current
+    signal_note: certified_products = ONE entry per product type (HubSpot Certified App), never per listing; listing
+      counts are context
+    detected_by: sweep-hubspot-app-marketplace.py
+    detected: '2026-10-21'
+  detected_by: sweep-hubspot-app-marketplace.py
+  first_seen: '2026-10-21'
 - partner_name: Google Workspace (own)
   partner: google-workspace
   partner_match: mirror
@@ -83,36 +129,106 @@ edges:
   category: Microsoft Teams app
   publisher_verified:
   - Microsoft 365 Publisher Attestation
-- partner_name: PyPI
-  partner: pypi
+- partner_name: Power BI (own)
+  partner: power-bi
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://learn.microsoft.com/en-us/power-query/connectors/supermetrics
+  mirror_of: power-bi/integrations/power-bi-integration-edges.yml
+  apps:
+  - Supermetrics
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+  category: Online Services
+- partner_name: Stripe (own)
+  partner: stripe
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.stripe.com/apps/supermetrics
+  mirror_of: stripe/integrations/stripe-integration-edges.yml
+  apps:
+  - Supermetrics
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: data_and_analytics
+- partner_name: HubSpot (own)
+  partner: hubspot
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/supermetrics
+  mirror_of: hubspot/integrations/hubspot-integration-edges.yml
+  apps:
+  - Supermetrics
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: DATA_MIGRATION
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.4a5d1203-2998-4197-96fd-42a3191d42c4
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - Supermetrics
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
+- partner_name: Amazon Ads Partner Directory
+  partner: amazon
   partner_match: register
   type: register
-  direction: provider-built
-  category: official SDK (Python)
-  evidence: https://pypi.org/project/supermetrics/
-  channel: package-registry
-  relationship: distribution-channel
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://advertising.amazon.com/partners/directory
+  category: Amazon Ads partner (services)
   contract_reference:
-    register: PyPI (public registry JSON)
-    spec_file: null
-    language: Python
-    packages:
-    - name: supermetrics
-      version: 0.5.1
-      released: '2026-08-20'
-      released_field: upload_time
-      lapsed: false
-      page: https://pypi.org/project/supermetrics/
-      repo_leg: github-org:supermetrics-public
-      publisher_leg: email:supermetrics.com
-      matched_by: domain
-    current: true
-    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
-      24 months'
-    detected_by: sweep-official-sdks.py
-    detected: '2026-10-18'
-  detected_by: sweep-official-sdks.py
-  first_seen: '2026-10-18'
+    register: Amazon Ads Partner Directory (advertising.amazon.com/partners/directory, GetPartners)
+    registered_name: Supermetrics
+    register_id: amzn1.ads1.ma1.9tscysgdoolie4cqzffphwaje
+    matched_domain: supermetrics.com
+    matched_by: domain
+    services:
+    - BUSINESS_AND_MARKETING_INTELLIGENCE_TOOLS
+    - CAMPAIGN_REPORTING
+    - DATA_CONNECTORS
+    - DATA_INTEGRATION
+    - REPORTING_AND_ANALYTICS
+    ads_products:
+    - SPONSORED_BRANDS
+    - SPONSORED_PRODUCTS
+    service_models:
+    - TOOL_PROVIDER
+    signal_note: listing = participation; accreditation recorded as partner_tier; ads_certifications are Amazon
+      Ads LEARNING certifications held by staff, not product conformance, never certified_products
+    detected_by: sweep-amazon-sp-api-appstore.py
+    detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
+  detected: '2026-10-21'
+  partner_tier:
+  - VERIFIED_PARTNER
 generated: '2026-10-14'
 method: searched
 checked:
@@ -126,6 +242,15 @@ checked:
 - https://repo1.maven.org/maven2
 - https://rubygems.org/api/v1
 - microsoft-teams/integrations/microsoft-teams-integration-edges.yml
+- power-bi/integrations/power-bi-integration-edges.yml
 - stripe/integrations/stripe-integration-edges.yml
+- https://app.hubspot.com/api/chirp-frontend-external/v1/gateway/com.hubspot.marketplace.personalization.rpc.PersonalizationPublicRpc/search
+- https://ecosystem.hubspot.com/marketplace/apps
+- https://ecosystem.hubspot.com/marketplace/explore?eco_PRODUCT_TYPE=APP&eco_CERTIFIED=true
+- https://ecosystem.hubspot.com/marketplace/solutions
+- hubspot/integrations/hubspot-integration-edges.yml
+- https://advertising.amazon.com/partners/directory
+- https://sellercentral.amazon.com/gspn
+- https://sellercentral.amazon.com/selling-partner-appstore
 source:
 - stripe/integrations/stripe-integration-edges.yml
